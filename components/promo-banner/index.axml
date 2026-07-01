@@ -1,0 +1,45 @@
+<view class="pb" style="background:{{promo.bg}}" onTap="tap">
+  <!-- bunting -->
+  <view class="pb__bunting">
+    <view class="flag" a:for="{{flags}}" a:key="*this" style="border-top-color:{{item}}"></view>
+  </view>
+
+  <!-- brand tag -->
+  <view class="pb__brand">
+    <fa-icon name="basket" size="30" color="#ffffff" />
+    <text class="pb__brandtxt">Groceria</text>
+  </view>
+
+  <!-- floating discount coins -->
+  <view class="pb__coin pb__coin--a">%</view>
+  <view class="pb__coin pb__coin--b">%</view>
+  <view class="spark spark--a"></view>
+  <view class="spark spark--b"></view>
+
+  <!-- offer sticker -->
+  <view class="pb__sticker">
+    <text class="pb__kicker">{{promo.kicker}}</text>
+    <view class="pb__amtrow">
+      <text class="pb__amt">{{promo.amount}}</text>
+      <text class="pb__off">{{promo.off}}</text>
+    </view>
+  </view>
+  <text class="pb__sub">{{promo.subtitle}}</text>
+
+  <!-- ground -->
+  <view class="pb__ground"></view>
+
+  <!-- mascots -->
+  <view class="pb__cast">
+    <image class="pb__mascot" a:for="{{promo.mascots}}" a:key="src" src="{{item.src}}" mode="aspectFit" style="animation-delay:{{item.delay}}ms" />
+  </view>
+
+  <!-- cta -->
+  <view class="pb__cta">
+    <text class="pb__ctatxt">{{promo.cta}}</text>
+    <fa-icon name="chevron-right" size="26" color="#ffffff" />
+  </view>
+
+  <!-- shine sweep -->
+  <view class="pb__shine"></view>
+</view>

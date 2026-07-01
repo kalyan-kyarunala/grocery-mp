@@ -9,11 +9,10 @@
           <text class="locbar__city">{{address}}</text>
           <fa-icon name="chevron-down" size="20" color="#fff" />
         </view>
-     
       </view>
-   <!--    <image class="locbar__logo" src="/images/groceria_logo.svg" mode="aspectFit" />  -->
+      <!--    <image class="locbar__logo" src="/images/groceria_logo.svg" mode="aspectFit" />  -->
     </view>
-   
+
     <view class="searchbar mt-m" onTap="noop">
       <fa-icon name="search" size="32" color="#9AA0A6" />
       <text class="faint">Search for products, categories, stores, and more</text>
@@ -26,6 +25,14 @@
           class="chip {{activeFilter === item ? 'active' : ''}}"
           data-f="{{item}}" onTap="setFilter">{{item}}</view>
   </scroll-view>
+
+  <!-- Promo carousel -->
+  <swiper class="promos" autoplay interval="4500" circular indicator-dots
+          indicator-active-color="#1A56DB" indicator-color="#C7D0DE">
+    <swiper-item a:for="{{promos}}" a:key="id">
+      <promo-banner promo="{{item}}" onTap="openPromo" />
+    </swiper-item>
+  </swiper>
 
   <!-- Outlets -->
   <view class="pad-x">

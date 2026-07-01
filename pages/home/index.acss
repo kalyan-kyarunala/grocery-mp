@@ -11,3 +11,6 @@
   box-shadow: 0 4rpx 12rpx rgba(0,0,0,.06);
 }
 .chips .chip { display: inline-block; margin-right: 14rpx; }
+
+.promos { height: 640rpx; padding: 24rpx 28rpx 8rpx; box-sizing: content-box; }
+.promos swiper-item { padding: 0 4rpx; box-sizing: border-box; }
