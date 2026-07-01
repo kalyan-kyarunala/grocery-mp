@@ -1,21 +1,27 @@
 <view class="screen">
-  <!-- Location header -->
-  <view class="locbar">
-    <view class="row between">
-      <view class="col" onTap="openLocationPicker">
-        <text class="locbar__label">Deliver to</text>
-        <view class="row gap-s">
-          <fa-icon name="map-pin" size="26" color="#DC2626" />
-          <text class="locbar__city">{{address}}</text>
-          <fa-icon name="chevron-down" size="20" color="#fff" />
+  <!-- Hero: location header + promo banner, merged into one block -->
+  <view class="hero">
+    <view class="locbar">
+      <view class="row between">
+        <view class="col" onTap="openLocationPicker">
+          <text class="locbar__label">Deliver to</text>
+          <view class="row gap-s">
+            <fa-icon name="map-pin" size="26" color="#DC2626" />
+            <text class="locbar__city">{{address}}</text>
+            <fa-icon name="chevron-down" size="20" color="#fff" />
+          </view>
         </view>
       </view>
-      <!--    <image class="locbar__logo" src="/images/groceria_logo.svg" mode="aspectFit" />  -->
+
+      <view class="searchbar mt-m" onTap="noop">
+        <fa-icon name="search" size="32" color="#9AA0A6" />
+        <text class="faint">Search for products, categories, stores, and more</text>
+      </view>
     </view>
 
-    <view class="searchbar mt-m" onTap="noop">
-      <fa-icon name="search" size="32" color="#9AA0A6" />
-      <text class="faint">Search for products, categories, stores, and more</text>
+    <!-- Promo banner -->
+    <view class="promo-wrap">
+      <promo-banner promo="{{promo}}" onTap="openPromo" />
     </view>
   </view>
 
@@ -25,14 +31,6 @@
           class="chip {{activeFilter === item ? 'active' : ''}}"
           data-f="{{item}}" onTap="setFilter">{{item}}</view>
   </scroll-view>
-
-  <!-- Promo carousel -->
-  <swiper class="promos" autoplay interval="4500" circular indicator-dots
-          indicator-active-color="#1A56DB" indicator-color="#C7D0DE">
-    <swiper-item a:for="{{promos}}" a:key="id">
-      <promo-banner promo="{{item}}" onTap="openPromo" />
-    </swiper-item>
-  </swiper>
 
   <!-- Outlets -->
   <view class="pad-x">
