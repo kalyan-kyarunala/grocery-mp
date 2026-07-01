@@ -1,0 +1,21 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/location/index",
+    "pages/store/index",
+    "pages/product/index",
+    "pages/cart/index",
+    "pages/checkout/index",
+    "pages/merchant/dashboard/index",
+    "pages/merchant/orders/index",
+    "pages/merchant/order-detail/index",
+    "pages/merchant/inventory/index"
+  ],
+  "window": {
+    "defaultTitle": "",
+    "titleBarColor": "#1A56DB",
+    "navigationBarTitleText": "",
+    "pullRefresh": false,
+    "allowsBounceVertical": "NO"
+  }
+}

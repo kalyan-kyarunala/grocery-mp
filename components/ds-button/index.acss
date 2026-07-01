@@ -1,0 +1,10 @@
+.ds-btn {
+  display: flex; align-items: center; justify-content: center; gap: 14rpx;
+  min-height: var(--tap); padding: 0 28rpx;
+  border-radius: 22rpx; font-size: 28rpx; font-weight: 600;
+}
+.ds-btn--block { width: 100%; }
+.ds-btn--primary { background: var(--c-primary); color: #fff; }
+.ds-btn--secondary { background: #fff; color: var(--c-primary); border: 1rpx solid var(--c-line); }
+.ds-btn--ghost { background: var(--c-primary-50); color: var(--c-primary); }
+.ds-btn:active { opacity: .9; }

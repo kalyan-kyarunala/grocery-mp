@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "Merchant",
+  "usingComponents": {
+    "fa-icon": "/components/fa-icon/index",
+    "toggle-switch": "/components/toggle-switch/index"
+  }
+}

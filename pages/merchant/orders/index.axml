@@ -1,0 +1,34 @@
+<view class="screen">
+  <view class="appbar">
+    <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#1A1A1A" /></view>
+    <text class="title">Orders</text>
+  </view>
+
+  <view class="tabs pad-x">
+    <view a:for="{{tabs}}" a:key="key" class="tabs__t {{activeTab === item.key ? 'tabs__t--on' : ''}}" data-k="{{item.key}}" onTap="setTab">
+      {{item.label}}<text a:if="{{item.count}}"> ({{item.count}})</text>
+    </view>
+  </view>
+
+  <view class="pad-x mt-m">
+    <view class="card pad mt-s" a:for="{{visible}}" a:key="id">
+      <view class="row between">
+        <text class="strong">{{item.id}}</text>
+        <view class="row gap-s"><fa-icon name="clock" size="24" color="#9AA0A6" /><text class="faint">{{item.ago}}</text></view>
+      </view>
+      <view class="row gap-s mt-s">
+        <text class="badge {{item.mode === 'Delivery' ? 'blue' : 'ok'}}">{{item.mode}}</text>
+        <text class="faint">{{item.count}} items · {{item.customer}}</text>
+      </view>
+      <text class="faint mt-s" style="display:block">{{item.items}}</text>
+      <view class="row between mt-m">
+        <text class="price">{{item.total}}</text>
+        <view class="row gap-s">
+          <ds-button text="Reject" type="secondary" data="{{item.id}}" onTap="reject" />
+          <ds-button text="Accept" type="primary" icon="check" data="{{item.id}}" onTap="accept" />
+        </view>
+      </view>
+    </view>
+    <view a:if="{{visible.length === 0}}" class="empty"><fa-icon name="receipt" size="80" color="#D6D6CF" /><text class="muted mt-m">No orders here</text></view>
+  </view>
+</view>

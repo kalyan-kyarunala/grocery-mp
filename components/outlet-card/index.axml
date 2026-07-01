@@ -1,0 +1,15 @@
+<view class="oc card" onTap="open">
+  <view class="oc__banner" style="background:{{outlet.bg}}">
+    <image a:if="{{outlet.image}}" class="oc__img" src="{{outlet.image}}" mode="aspectFill" />
+    <fa-icon a:else name="store" size="60" color="{{outlet.iconColor}}" />
+    <text a:if="{{outlet.badge}}" class="badge green oc__badge">{{outlet.badge}}</text>
+  </view>
+  <view class="oc__body">
+    <text class="h2">{{outlet.name}}</text>
+    <view class="row gap-l mt-s">
+      <view class="row gap-s"><fa-icon name="star" size="24" color="#BA7517" /><text class="muted">{{outlet.rating}}</text></view>
+      <view class="row gap-s"><fa-icon name="map-pin" size="24" color="#6B7280" /><text class="muted">{{outlet.distance}}</text></view>
+      <view class="row gap-s"><fa-icon name="clock" size="24" color="#6B7280" /><text class="muted">{{outlet.eta}}</text></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "defaultTitle": "Your cart",
+  "usingComponents": {
+    "fa-icon": "/components/fa-icon/index",
+    "qty-stepper": "/components/qty-stepper/index",
+    "ds-button": "/components/ds-button/index"
+  }
+}

@@ -1,0 +1,6 @@
+.stepper {
+  display: inline-flex; align-items: center;
+  border: 1rpx solid #DDD; border-radius: 18rpx; padding: 0 8rpx;
+}
+.stepper__btn { width: 64rpx; height: 72rpx; }
+.stepper__val { min-width: 44rpx; text-align: center; font-size: 28rpx; font-weight: 600; }

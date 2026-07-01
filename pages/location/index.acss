@@ -1,0 +1,13 @@
+.loc { background: #fff; padding: 24rpx 28rpx; }
+.loc__header { padding: 8rpx 0 28rpx; }
+.loc__hint { font-size: 26rpx; color: var(--c-accent-700); display: block; margin-bottom: 28rpx; }
+.loc__inputrow { align-items: center; }
+.loc__input {
+  background: var(--c-bg); border: 1rpx solid var(--c-line); border-radius: var(--radius-sm);
+  min-height: var(--tap); padding: 0 20rpx;
+}
+.loc__field { font-size: 26rpx; color: var(--c-text); height: var(--tap); }
+.loc__locate {
+  width: var(--tap); height: var(--tap); border: 1rpx solid var(--c-line); border-radius: var(--radius-sm);
+  background: var(--c-bg); flex: none;
+}

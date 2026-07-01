@@ -1,0 +1,21 @@
+<view class="screen">
+  <view class="appbar">
+    <text class="title fill">Inventory</text>
+    <ds-button text="Add" type="primary" icon="plus" onTap="add" />
+  </view>
+
+  <view class="pad-x mt-s">
+    <view class="searchbar"><fa-icon name="search" size="32" color="#9AA0A6" /><input class="searchbar__in" placeholder="Search products" value="{{q}}" onInput="onSearch" /></view>
+  </view>
+
+  <view class="pad-x mt-s">
+    <view class="inv" a:for="{{visible}}" a:key="id">
+      <view class="inv__thumb" style="background:{{item.bg}}"><fa-icon name="{{item.icon}}" size="40" color="{{item.iconColor}}" /></view>
+      <view class="fill">
+        <text class="strong">{{item.name}}</text>
+        <text class="{{item.available ? 'muted' : 'oos'}}" style="display:block">{{item.priceText}} · {{item.available ? item.stock + ' in stock' : 'Out of stock'}}</text>
+      </view>
+      <toggle-switch checked="{{item.available}}" id="{{item.id}}" onChange="toggleAvail" />
+    </view>
+  </view>
+</view>

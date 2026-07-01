@@ -1,0 +1,79 @@
+<view class="screen screen--flush">
+
+  <!-- Hero image -->
+  <view class="hero" style="background:#fff">
+    <view class="hero__icon tap" onTap="back"><fa-icon name="arrow-left" size="34" color="#1A1A1A" /></view>
+    <view class="hero__icon hero__icon--right tap" onTap="fav"><fa-icon name="heart" size="34" color="{{faved ? '#EF4444' : '#D1D5DB'}}" /></view>
+    <image a:if="{{product.image}}" class="hero__img" src="{{product.image}}" mode="aspectFit" />
+    <fa-icon a:else name="image" size="130" color="#D1D5DB" />
+  </view>
+
+  <!-- Info card overlapping hero -->
+  <view class="info-card">
+
+    <!-- Name + Price -->
+    <view class="row between" style="align-items:flex-start">
+      <view class="col" style="flex:1;margin-right:24rpx">
+        <text class="prod-name">{{product.name}}</text>
+        <view class="cat-pill mt-s">
+          <fa-icon name="leaf" size="20" color="#16A34A" />
+          <text class="cat-pill__t">{{product.category}} · {{product.unit}}</text>
+        </view>
+      </view>
+      <view class="price-block">
+        <text class="prod-price">{{product.priceText}}</text>
+      </view>
+    </view>
+
+    <!-- Stock -->
+    <view class="stock-badge mt-m">
+      <fa-icon name="check" size="22" color="#15803D" />
+      <text class="stock-badge__t">In stock</text>
+      <text class="stock-badge__sep">·</text>
+      <text class="stock-badge__count">{{product.stock}} left</text>
+    </view>
+
+    <!-- Description -->
+    <text class="prod-desc mt-m">{{product.desc}}</text>
+
+    <!-- Divider -->
+    <view class="divider mt-l" />
+
+    <!-- Trust badges -->
+    <view class="trust-row mt-l">
+      <view class="trust-item">
+        <view class="trust-icon"><fa-icon name="leaf" size="40" color="#16A34A" /></view>
+        <text class="trust-label">Farm Fresh</text>
+      </view>
+      <view class="trust-item">
+        <view class="trust-icon"><fa-icon name="truck" size="40" color="#16A34A" /></view>
+        <text class="trust-label">Fast Delivery</text>
+      </view>
+      <view class="trust-item">
+        <view class="trust-icon"><fa-icon name="certificate" size="40" color="#16A34A" /></view>
+        <text class="trust-label">100% Natural</text>
+      </view>
+      <view class="trust-item">
+        <view class="trust-icon"><fa-icon name="lock" size="40" color="#16A34A" /></view>
+        <text class="trust-label">Safe Payment</text>
+      </view>
+    </view>
+
+    <!-- Divider -->
+    <view class="divider mt-l" />
+
+    <!-- Quantity -->
+    <view class="qty-row mt-l">
+      <view class="col">
+        <text class="qty-title">Quantity</text>
+        <text class="qty-sub">Select how many you need</text>
+      </view>
+      <qty-stepper value="{{qty}}" min="1" onChange="setQty" />
+    </view>
+
+  </view>
+
+  <view class="footerbar">
+    <ds-button text="Add to cart · {{totalText}}" icon="cart" type="primary" block="{{true}}" onTap="addToCart" />
+  </view>
+</view>

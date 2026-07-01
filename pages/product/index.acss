@@ -1,0 +1,45 @@
+.screen--flush { padding-bottom: 160rpx; }
+
+/* Hero */
+.hero { height: 580rpx; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.hero__img { width: 100%; height: 100%; }
+.hero__icon { position: absolute; top: 24rpx; left: 24rpx; width: 72rpx; height: 72rpx; min-width: 72rpx; min-height: 72rpx; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4rpx 16rpx rgba(0,0,0,.10); }
+.hero__icon--right { left: auto; right: 24rpx; }
+
+/* Info card */
+.info-card { margin-top: -44rpx; background: #fff; border-radius: 44rpx 44rpx 0 0; padding: 40rpx 28rpx 0; position: relative; z-index: 2; box-shadow: 0 -8rpx 32rpx rgba(0,0,0,.07); }
+
+/* Product name & price */
+.prod-name { font-size: 48rpx; font-weight: 700; color: var(--c-text); line-height: 1.2; }
+.price-block { background: var(--c-accent); border-radius: 18rpx; padding: 12rpx 24rpx; align-self: flex-start; }
+.prod-price { font-size: 36rpx; font-weight: 700; color: #fff; }
+
+/* Category pill */
+.cat-pill { display: inline-flex; align-items: center; gap: 8rpx; }
+.cat-pill__t { font-size: 26rpx; color: #166534; font-weight: 500; }
+
+/* Stock badge */
+.stock-badge { display: inline-flex; align-items: center; gap: 8rpx; background: #F0FDF4; border-radius: var(--radius-pill); padding: 10rpx 22rpx; }
+.stock-badge__t { font-size: 26rpx; color: #15803D; font-weight: 600; }
+.stock-badge__sep { font-size: 24rpx; color: #86EFAC; }
+.stock-badge__count { font-size: 24rpx; color: #6B7280; }
+
+/* Description */
+.prod-desc { font-size: 28rpx; line-height: 1.85; color: #6B7280; display: block; }
+
+/* Divider */
+.divider { height: 1rpx; background: var(--c-line); }
+
+/* Trust row */
+.trust-row { display: flex; justify-content: space-between; }
+.trust-item { display: flex; flex-direction: column; align-items: center; gap: 14rpx; flex: 1; }
+.trust-icon { width: 88rpx; height: 88rpx; border-radius: 50%; background: #DCFCE7; display: flex; align-items: center; justify-content: center; }
+.trust-label { font-size: 22rpx; color: #166534; text-align: center; line-height: 1.4; font-weight: 500; }
+
+/* Quantity row */
+.qty-row { display: flex; align-items: center; justify-content: space-between; background: #F9FAFB; border-radius: 20rpx; padding: 24rpx; }
+.qty-title { font-size: 34rpx; font-weight: 700; color: var(--c-text); }
+.qty-sub { font-size: 24rpx; color: #6B7280; margin-top: 6rpx; display: block; }
+
+/* Footer */
+.footerbar { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1rpx solid var(--c-line); padding: 20rpx 28rpx calc(20rpx + env(safe-area-inset-bottom)); }

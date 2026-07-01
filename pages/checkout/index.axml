@@ -1,0 +1,52 @@
+<view class="screen screen--flush">
+  <view class="appbar">
+    <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#1A1A1A" /></view>
+    <text class="title">Checkout</text>
+  </view>
+
+  <!-- Order summary -->
+  <view class="card pad" style="margin:24rpx 28rpx">
+    <text class="strong">Order summary</text>
+    <view class="row between mt-s" a:for="{{cart}}" a:key="id">
+      <text class="muted">{{item.name}} × {{item.qty}}</text>
+      <text class="muted">{{item.lineText}}</text>
+    </view>
+  </view>
+
+  <!-- Address -->
+  <view class="card pad row gap-s" style="margin:0 28rpx">
+    <fa-icon name="map-pin" size="36" color="#1A56DB" />
+    <view class="fill">
+      <text class="strong">{{mode === 'pickup' ? 'Pickup at outlet' : 'Deliver to home'}}</text>
+      <text class="faint" style="display:block">{{addressLine}}</text>
+    </view>
+    <fa-icon name="chevron-right" size="30" color="#9AA0A6" />
+  </view>
+
+  <!-- Payment methods -->
+  <view class="pad-x mt-m">
+    <text class="strong">Payment method</text>
+    <view class="pay {{pay === 'tng' ? 'pay--on' : ''}} mt-s" data-p="tng" onTap="setPay">
+      <view class="pay__logo" style="background:#1A56DB"><fa-icon name="wallet" size="32" color="#fff" /></view>
+      <view class="fill"><text class="strong">TNG eWallet</text><text class="faint" style="display:block">Balance RM 142.60</text></view>
+      <fa-icon name="{{pay === 'tng' ? 'circle-check' : 'circle'}}" size="38" color="{{pay === 'tng' ? '#1A56DB' : '#CFCFC7'}}" />
+    </view>
+    <view class="pay {{pay === 'card' ? 'pay--on' : ''}} mt-s" data-p="card" onTap="setPay">
+      <view class="pay__logo" style="background:#F1F1EE"><fa-icon name="card" size="32" color="#6B7280" /></view>
+      <view class="fill"><text class="strong">Card / FPX</text><text class="faint" style="display:block">Visa, Mastercard, online banking</text></view>
+      <fa-icon name="{{pay === 'card' ? 'circle-check' : 'circle'}}" size="38" color="{{pay === 'card' ? '#1A56DB' : '#CFCFC7'}}" />
+    </view>
+  </view>
+
+  <!-- Totals -->
+  <view class="pad-x mt-m">
+    <view class="row between"><text class="muted">Subtotal</text><text class="muted">{{subtotalText}}</text></view>
+    <view class="row between mt-s"><text class="muted">Delivery fee</text><text class="muted">{{feeText}}</text></view>
+    <view class="divider mt-s"></view>
+    <view class="row between mt-s"><text class="h2">Total</text><text class="h2" style="color:var(--c-accent)">{{totalText}}</text></view>
+  </view>
+
+  <view class="footerbar">
+    <ds-button text="Pay {{totalText}}" icon="lock" type="primary" block="{{true}}" onTap="pay" />
+  </view>
+</view>

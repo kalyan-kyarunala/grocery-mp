@@ -1,0 +1,106 @@
+/* ============================================================
+   TNG Grocer — Global stylesheet & design tokens
+   Design system: Primary #1A56DB (TNG blue), Accent #16A34A (green)
+   Font: system default (SF Pro / Roboto). Touch targets >= 88rpx (44px).
+   ============================================================ */
+
+/* ---- FontAwesome 6 (icon-font route for mini-programs) ----
+   Remote font load. In the TNG/Ant IDE you must whitelist the
+   download domain (Details > Domain whitelist) OR self-host the
+   .woff2 under /assets and point src at it. SVG-in-<image> is the
+   offline fallback if remote fonts are blocked by the runtime. */
+@font-face {
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-weight: 900;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-solid-900.woff2") format("woff2");
+}
+
+/* ---- Design tokens (CSS variables, scoped to every page) ---- */
+page {
+  --c-primary:      #1A56DB;
+  --c-primary-50:   #E8EEFB;
+  --c-accent:       #16A34A;
+  --c-accent-50:    #E9F7EF;
+  --c-accent-700:   #15803D;
+  --c-warn-50:      #FBEEE6;
+  --c-warn-700:     #B45309;
+  --c-danger:       #DC2626;
+  --c-text:         #1A1A1A;
+  --c-muted:        #6B7280;
+  --c-faint:        #9AA0A6;
+  --c-line:         #ECEAE3;
+  --c-bg:           #F6F7F9;
+  --c-card:         #FFFFFF;
+  --radius:         24rpx;
+  --radius-sm:      18rpx;
+  --radius-pill:    999rpx;
+  --tap:            88rpx;        /* 44px minimum touch target */
+
+  background: var(--c-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Roboto, "Segoe UI", sans-serif;
+  color: var(--c-text);
+  font-size: 26rpx;
+}
+
+/* ---- Layout utilities ---- */
+.row { display: flex; flex-direction: row; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.between { justify-content: space-between; }
+.center { align-items: center; justify-content: center; }
+.wrap { flex-wrap: wrap; }
+.fill { flex: 1; }
+.gap-s { gap: 12rpx; }
+.gap-m { gap: 20rpx; }
+.gap-l { gap: 28rpx; }
+.scroll { height: 100vh; }
+
+/* ---- Surfaces ---- */
+.screen { min-height: 100vh; background: var(--c-bg); padding-bottom: 40rpx; }
+.card {
+  background: var(--c-card);
+  border: 1rpx solid var(--c-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.pad { padding: 24rpx; }
+.pad-x { padding-left: 28rpx; padding-right: 28rpx; }
+.mt-s { margin-top: 16rpx; } .mt-m { margin-top: 24rpx; } .mt-l { margin-top: 36rpx; }
+
+/* ---- Type ---- */
+.h1 { font-size: 34rpx; font-weight: 600; color: var(--c-text); }
+.h2 { font-size: 28rpx; font-weight: 600; color: var(--c-text); }
+.body { font-size: 26rpx; color: var(--c-text); }
+.muted { font-size: 24rpx; color: var(--c-muted); }
+.faint { font-size: 22rpx; color: var(--c-faint); }
+.price { font-size: 28rpx; font-weight: 600; color: var(--c-accent); }
+.strong { font-weight: 600; }
+.link { font-size: 24rpx; color: var(--c-primary); }
+
+/* ---- Chips / badges ---- */
+.chip {
+  font-size: 24rpx; padding: 14rpx 24rpx; border-radius: var(--radius-pill);
+  background: var(--c-primary-50); color: var(--c-primary);
+}
+.chip.active { background: var(--c-primary); color: #fff; font-weight: 600; }
+.badge { font-size: 20rpx; font-weight: 600; padding: 6rpx 14rpx; border-radius: 14rpx; }
+.badge.green { background: var(--c-accent); color: #fff; }
+.badge.blue  { background: var(--c-primary-50); color: var(--c-primary); }
+.badge.warn  { background: var(--c-warn-50); color: var(--c-warn-700); }
+.badge.ok    { background: var(--c-accent-50); color: var(--c-accent-700); }
+
+/* ---- Sticky app bar ---- */
+.appbar {
+  display: flex; align-items: center; gap: 18rpx;
+  min-height: var(--tap); padding: 16rpx 28rpx;
+  background: #fff; border-bottom: 1rpx solid var(--c-line);
+}
+.appbar .title { font-size: 30rpx; font-weight: 600; }
+
+/* ---- Generic tappable hit area (enforces 44px) ---- */
+.tap { min-height: var(--tap); min-width: var(--tap); display: flex; align-items: center; justify-content: center; }
+.divider { height: 1rpx; background: var(--c-line); }
+
+/* ---- Brand header gradient (home / dashboard) ---- */
+.brandbar { background: var(--c-primary); padding: 28rpx; color: #fff; }
+.brandbar .label { font-size: 22rpx; opacity: .85; }

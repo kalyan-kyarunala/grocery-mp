@@ -1,0 +1,4 @@
+.tabs { display: flex; gap: 32rpx; border-bottom: 1rpx solid var(--c-line); }
+.tabs__t { padding: 20rpx 0; font-size: 26rpx; color: var(--c-muted); }
+.tabs__t--on { color: var(--c-primary); font-weight: 600; border-bottom: 4rpx solid var(--c-primary); }
+.empty { display: flex; flex-direction: column; align-items: center; padding: 100rpx 0; }

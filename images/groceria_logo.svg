@@ -1,0 +1,13 @@
+<svg width="100%" viewBox="118 62 307 90" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Groceria logo</title>
+<g transform="translate(150,54) scale(0.92)">
+  <path d="M35 46 a15 15 0 0 1 30 0" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round"/>
+  <rect x="29" y="48" width="42" height="40" rx="9" fill="#FFFFFF"/>
+  <line x1="30" y1="58" x2="70" y2="58" stroke="#1A56DB" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M50 50 C50 45 50 41 51 37" fill="none" stroke="#34D27B" stroke-width="2" stroke-linecap="round"/>
+  <path d="M50 43 C45 41 40 40 35 42 C40 45 45 47 50 46 Z" fill="#34D27B"/>
+  <path d="M51 39 C52 31 57 26 64 25 C61 32 56 38 51 41 Z" fill="#7CE3A8"/>
+</g>
+<text x="423" y="112" text-anchor="end" font-size="46" font-family="Poppins, sans-serif" font-weight="700" fill="#FFFFFF">Groceria</text>
+<text x="423" y="138" text-anchor="end" font-size="13" letter-spacing="1.5" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="500">fresh groceries, delivered</text>
+</svg>

@@ -1,0 +1,39 @@
+<view class="screen">
+  <!-- Location header -->
+  <view class="locbar">
+    <view class="row between">
+      <view class="col" onTap="openLocationPicker">
+        <text class="locbar__label">Deliver to</text>
+        <view class="row gap-s">
+          <fa-icon name="map-pin" size="26" color="#DC2626" />
+          <text class="locbar__city">{{address}}</text>
+          <fa-icon name="chevron-down" size="20" color="#fff" />
+        </view>
+     
+      </view>
+   <!--    <image class="locbar__logo" src="/images/groceria_logo.svg" mode="aspectFit" />  -->
+    </view>
+   
+    <view class="searchbar mt-m" onTap="noop">
+      <fa-icon name="search" size="32" color="#9AA0A6" />
+      <text class="faint">Search for products, categories, stores, and more</text>
+    </view>
+  </view>
+
+  <!-- Filter chips -->
+  <scroll-view scroll-x class="chips">
+    <view a:for="{{filters}}" a:key="*this"
+          class="chip {{activeFilter === item ? 'active' : ''}}"
+          data-f="{{item}}" onTap="setFilter">{{item}}</view>
+  </scroll-view>
+
+  <!-- Outlets -->
+  <view class="pad-x">
+    <text class="h2">Grocery outlets nearby</text>
+    <view class="col gap-m mt-m">
+      <outlet-card a:for="{{outlets}}" a:key="id" outlet="{{item}}" onOpen="openStore" />
+    </view>
+  </view>
+
+  <tab-bar active="home" />
+</view>

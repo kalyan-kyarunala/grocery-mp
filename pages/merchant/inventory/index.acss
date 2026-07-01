@@ -1,0 +1,5 @@
+.searchbar { display: flex; align-items: center; gap: 14rpx; background: #F1F1EE; border-radius: 16rpx; min-height: 84rpx; padding: 0 22rpx; }
+.searchbar__in { flex: 1; font-size: 26rpx; }
+.inv { display: flex; align-items: center; gap: 18rpx; padding: 20rpx 0; border-bottom: 1rpx solid #F0EFE9; }
+.inv__thumb { width: 88rpx; height: 88rpx; border-radius: 16rpx; display: flex; align-items: center; justify-content: center; }
+.oos { font-size: 24rpx; color: var(--c-danger); }

@@ -1,0 +1,19 @@
+<view class="screen loc">
+  <view class="row gap-m loc__header">
+    <view class="tap" onTap="close"><fa-icon name="xmark" size="36" color="#1A1A1A" /></view>
+    <text class="h1">Where to?</text>
+  </view>
+
+  <text class="loc__hint">Enter the delivery address to find available merchants.</text>
+
+  <view class="row gap-m loc__inputrow">
+    <view class="row gap-s loc__input fill">
+      <fa-icon name="map-pin" size="28" color="#1A1A1A" />
+      <input class="fill loc__field" placeholder="Enter your address" value="{{address}}" onInput="onAddressInput" confirm-type="search" onConfirm="confirmAddress" />
+      <view a:if="{{address}}" class="tap" onTap="clearAddress"><fa-icon name="circle-xmark" size="26" color="#C7CBD1" /></view>
+    </view>
+    <view class="loc__locate tap" onTap="useCurrentLocation">
+      <fa-icon name="location-crosshairs" size="32" color="#1A1A1A" />
+    </view>
+  </view>
+</view>

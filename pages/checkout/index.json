@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "Checkout",
+  "usingComponents": {
+    "fa-icon": "/components/fa-icon/index",
+    "ds-button": "/components/ds-button/index"
+  }
+}

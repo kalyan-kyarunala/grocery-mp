@@ -1,0 +1,38 @@
+<view class="screen">
+  <view class="toast {{toast.show ? 'toast--in' : ''}}">
+    <view class="toast__badge"><fa-icon name="circle-check" size="60" color="#fff" /></view>
+    <text class="toast__title">Added to cart!</text>
+    <text class="toast__sub">{{toast.name}}</text>
+  </view>
+
+  <view class="store__banner" style="background:{{store.bg}}">
+    <image a:if="{{store.image}}" class="store__img" src="{{store.image}}" mode="aspectFill" />
+    <fa-icon a:else name="store" size="64" color="{{store.iconColor}}" />
+  </view>
+
+  <view class="store__info">
+    <text class="h1">{{store.name}}</text>
+    <view class="row gap-s mt-s wrap">
+      <view class="row gap-s meta-pill"><fa-icon name="star" size="22" color="#BA7517" /><text class="meta-pill__t">{{store.rating}}</text></view>
+      <view class="row gap-s meta-pill"><fa-icon name="map-pin" size="22" color="#6B7280" /><text class="meta-pill__t">{{store.distance}}</text></view>
+      <view class="row gap-s meta-pill"><fa-icon name="truck" size="22" color="#6B7280" /><text class="meta-pill__t">{{store.eta}}</text></view>
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="cats">
+    <view a:for="{{categories}}" a:key="*this"
+          class="chip cat-chip {{activeCat === item ? 'active' : ''}}"
+          data-c="{{item}}" onTap="setCat">{{item}}</view>
+  </scroll-view>
+
+  <view class="grid pad-x">
+    <view class="grid__cell" a:for="{{products}}" a:key="id">
+      <product-card item="{{item}}" onOpen="openProduct" onAdd="addToCart" onChange="changeQty" />
+    </view>
+  </view>
+
+  <view class="cartbar" a:if="{{cartCount > 0}}" onTap="goCart">
+    <view class="row gap-s"><fa-icon name="cart" size="34" color="#fff" /><text class="cartbar__t">{{cartCount}} items</text></view>
+    <view class="row gap-s"><text class="cartbar__t">{{cartTotalText}}</text><fa-icon name="chevron-right" size="26" color="#fff" /></view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "defaultTitle": "",
+  "usingComponents": {
+    "fa-icon": "/components/fa-icon/index",
+    "outlet-card": "/components/outlet-card/index",
+    "tab-bar": "/components/tab-bar/index"
+  }
+}

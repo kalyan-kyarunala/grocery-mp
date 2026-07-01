@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "Where to?",
+  "usingComponents": {
+    "fa-icon": "/components/fa-icon/index"
+  }
+}

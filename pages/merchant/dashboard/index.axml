@@ -1,0 +1,39 @@
+<view class="screen">
+  <view class="brandbar">
+    <view class="row between">
+      <view class="row gap-s">
+        <view class="m-logo"><fa-icon name="store" size="36" color="#1A56DB" /></view>
+        <view class="col"><text style="color:#fff;font-weight:600;font-size:28rpx">{{store.name}}</text><text class="label">{{store.outlet}}</text></view>
+      </view>
+      <fa-icon name="menu" size="40" color="#fff" />
+    </view>
+    <view class="openbar mt-m">
+      <view class="row gap-s"><view class="dot"></view><text style="color:#fff;font-weight:600">Store is {{open ? 'open' : 'closed'}}</text></view>
+      <toggle-switch checked="{{open}}" onChange="toggleOpen" />
+    </view>
+  </view>
+
+  <!-- Metrics: mobile 2-up, scales to 4-up on wider screens -->
+  <view class="m-grid pad-x mt-m">
+    <view class="m-cell"><view class="m-card" style="background:var(--c-accent-50)"><text class="m-k" style="color:#15803D">Today's sales</text><text class="m-v" style="color:#15803D">{{m.sales}}</text></view></view>
+    <view class="m-cell"><view class="m-card" style="background:var(--c-primary-50)"><text class="m-k" style="color:#1A56DB">Orders today</text><text class="m-v" style="color:#1A56DB">{{m.orders}}</text></view></view>
+    <view class="m-cell"><view class="m-card" style="background:var(--c-warn-50)"><text class="m-k" style="color:#B45309">Pending</text><text class="m-v" style="color:#B45309">{{m.pending}}</text></view></view>
+    <view class="m-cell"><view class="m-card" style="background:#F1F1EE"><text class="m-k" style="color:#6B7280">Avg prep</text><text class="m-v">{{m.prep}}</text></view></view>
+  </view>
+
+  <view class="pad-x mt-m">
+    <view class="row between"><text class="h2">New orders</text><text class="link" onTap="goOrders">View all</text></view>
+    <view class="card pad mt-s" a:for="{{newOrders}}" a:key="id" data-id="{{item.id}}" onTap="openOrder">
+      <view class="row between"><text class="strong">{{item.id}}</text><text class="badge warn">New</text></view>
+      <text class="muted mt-s">{{item.summary}}</text>
+    </view>
+  </view>
+
+  <view class="m-nav">
+    <view class="m-nav__i tap" onTap="goOrders"><fa-icon name="dashboard" size="40" color="#1A56DB" /></view>
+    <view class="m-nav__i tap" onTap="goOrders"><fa-icon name="receipt" size="40" color="#9AA0A6" /></view>
+    <view class="m-nav__i tap" onTap="goInv"><fa-icon name="box" size="40" color="#9AA0A6" /></view>
+    <view class="m-nav__i tap" onTap="soon"><fa-icon name="chart" size="40" color="#9AA0A6" /></view>
+    <view class="m-nav__i tap" onTap="soon"><fa-icon name="gear" size="40" color="#9AA0A6" /></view>
+  </view>
+</view>

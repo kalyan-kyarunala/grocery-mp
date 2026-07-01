@@ -1,0 +1,5 @@
+<view class="stepper">
+  <view class="stepper__btn tap" onTap="dec"><fa-icon name="minus" size="30" color="#9AA0A6" /></view>
+  <text class="stepper__val">{{value}}</text>
+  <view class="stepper__btn tap" onTap="inc"><fa-icon name="plus" size="30" color="#16A34A" /></view>
+</view>

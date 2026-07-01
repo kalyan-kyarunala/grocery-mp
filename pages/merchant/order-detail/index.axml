@@ -1,0 +1,27 @@
+<view class="screen screen--flush">
+  <view class="appbar">
+    <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#1A1A1A" /></view>
+    <text class="title">{{order.id}}</text>
+    <view class="fill"></view>
+    <text class="badge blue">{{order.status}}</text>
+  </view>
+
+  <view class="card pad row gap-s" style="margin:24rpx 28rpx">
+    <view class="avatar">{{order.initials}}</view>
+    <view class="fill"><text class="strong">{{order.customer}}</text><text class="faint" style="display:block">{{order.modeLine}}</text></view>
+    <view class="callbtn tap" onTap="call"><fa-icon name="phone" size="32" color="#fff" /></view>
+  </view>
+
+  <view class="pad-x">
+    <text class="strong">Items</text>
+    <view class="row between li" a:for="{{order.items}}" a:key="name"><text class="body">{{item.name}}</text><text class="muted">{{item.price}}</text></view>
+    <view class="row between li"><text class="muted">Delivery fee</text><text class="muted">{{order.fee}}</text></view>
+    <view class="divider"></view>
+    <view class="row between mt-s"><text class="h2">Total</text><text class="h2" style="color:var(--c-accent)">{{order.total}}</text></view>
+    <view class="badge ok mt-m" style="display:inline-flex;align-items:center;gap:8rpx"><fa-icon name="wallet" size="24" color="#15803D" /> Paid · {{order.payment}}</view>
+  </view>
+
+  <view class="footerbar">
+    <ds-button text="Mark as ready" icon="checks" type="primary" block="{{true}}" onTap="markReady" />
+  </view>
+</view>

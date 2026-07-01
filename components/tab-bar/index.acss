@@ -1,0 +1,6 @@
+.tabbar {
+  display: flex; justify-content: space-around; align-items: center;
+  background: #fff; border-top: 1rpx solid var(--c-line);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.tabbar__item { flex: 1; height: 96rpx; }

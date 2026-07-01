@@ -1,0 +1,48 @@
+<view class="screen screen--flush">
+  <view class="appbar">
+    <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#1A1A1A" /></view>
+    <text class="title">Your cart</text>
+  </view>
+
+  <!-- Delivery / pickup toggle -->
+  <view class="seg pad-x">
+    <view class="seg__opt {{mode === 'delivery' ? 'seg__opt--on' : ''}}" data-m="delivery" onTap="setMode">
+      <fa-icon name="truck" size="30" color="{{mode === 'delivery' ? '#fff' : '#6B7280'}}" /><text>Delivery</text>
+    </view>
+    <view class="seg__opt {{mode === 'pickup' ? 'seg__opt--on' : ''}}" data-m="pickup" onTap="setMode">
+      <fa-icon name="store" size="30" color="{{mode === 'pickup' ? '#fff' : '#6B7280'}}" /><text>Pickup</text>
+    </view>
+  </view>
+
+  <!-- Items -->
+  <view class="pad-x">
+    <view class="ci" a:for="{{cart}}" a:key="id">
+      <view class="ci__thumb" style="background:{{item.bg}}"><fa-icon name="{{item.icon}}" size="40" color="{{item.iconColor}}" /></view>
+      <view class="fill">
+        <text class="strong">{{item.name}}</text>
+        <text class="price" style="display:block">{{item.lineText}}</text>
+      </view>
+      <qty-stepper value="{{item.qty}}" min="0" id="{{item.id}}" onChange="changeQty" />
+    </view>
+    <view a:if="{{cart.length === 0}}" class="empty"><fa-icon name="cart" size="80" color="#D6D6CF" /><text class="muted mt-m">Your cart is empty</text></view>
+  </view>
+
+  <!-- Delivery address (delivery mode only) -->
+  <view a:if="{{mode === 'delivery' && cart.length > 0}}" class="card pad" style="margin:24rpx 28rpx">
+    <view class="row gap-s"><fa-icon name="map-pin" size="30" color="#1A56DB" /><text class="strong">Delivery address</text></view>
+    <input class="field mt-s" placeholder="Unit, building name" value="{{addr1}}" onInput="onAddr1" />
+    <input class="field mt-s" placeholder="Street, postcode, city" value="{{addr2}}" onInput="onAddr2" />
+  </view>
+
+  <!-- Totals -->
+  <view a:if="{{cart.length > 0}}" class="pad-x mt-s">
+    <view class="row between"><text class="muted">Subtotal</text><text class="muted">{{subtotalText}}</text></view>
+    <view class="row between mt-s"><text class="muted">Delivery fee</text><text class="muted">{{feeText}}</text></view>
+    <view class="divider mt-s"></view>
+    <view class="row between mt-s"><text class="h2">Total</text><text class="h2">{{totalText}}</text></view>
+  </view>
+
+  <view class="footerbar" a:if="{{cart.length > 0}}">
+    <ds-button text="Proceed to checkout" type="primary" block="{{true}}" onTap="checkout" />
+  </view>
+</view>

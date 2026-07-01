@@ -1,0 +1,6 @@
+<view
+  class="ds-btn ds-btn--{{type}} {{block ? 'ds-btn--block' : ''}}"
+  onTap="onTap">
+  <fa-icon a:if="{{icon}}" name="{{icon}}" size="32" color="{{type === 'primary' ? '#fff' : '#1A56DB'}}" />
+  <text class="ds-btn__label">{{text}}</text>
+</view>

@@ -1,0 +1,19 @@
+<view class="pc card" onTap="open">
+  <view class="pc__thumb" style="background:{{item.bg}}">
+    <image a:if="{{item.image}}" class="pc__img" src="{{item.image}}" mode="aspectFill" />
+    <fa-icon a:else name="{{item.icon}}" size="48" color="{{item.iconColor}}" />
+  </view>
+  <view class="pc__body">
+    <text class="pc__name">{{item.name}}</text>
+    <text class="pc__unit">{{item.unit}}</text>
+    <view class="row between mt-s">
+      <text class="pc__price">{{item.priceText}}</text>
+      <view a:if="{{!item.qty}}" class="pc__add tap" catchTap="add"><fa-icon name="plus" size="34" color="#fff" /></view>
+      <view a:else class="pc__stepper" catchTap="noop">
+        <view class="pc__stepBtn" catchTap="dec"><fa-icon name="minus" size="28" color="#16A34A" /></view>
+        <text class="pc__stepVal">{{item.qty}}</text>
+        <view class="pc__stepBtn" catchTap="inc"><fa-icon name="plus" size="28" color="#16A34A" /></view>
+      </view>
+    </view>
+  </view>
+</view>

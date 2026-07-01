@@ -1,0 +1,3 @@
+<view class="sw {{checked ? 'sw--on' : ''}}" onTap="toggle">
+  <view class="sw__dot"></view>
+</view>

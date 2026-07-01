@@ -1,0 +1,4 @@
+.sw { width: 88rpx; height: 52rpx; border-radius: 999rpx; background: #D6D6CF; position: relative; transition: background .15s; }
+.sw--on { background: var(--c-accent); }
+.sw__dot { position: absolute; top: 6rpx; left: 6rpx; width: 40rpx; height: 40rpx; border-radius: 50%; background: #fff; transition: left .15s; }
+.sw--on .sw__dot { left: 42rpx; }
