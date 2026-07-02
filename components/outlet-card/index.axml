@@ -4,12 +4,17 @@
     <fa-icon a:else name="store" size="60" color="{{outlet.iconColor}}" />
     <text a:if="{{outlet.badge}}" class="badge green oc__badge">{{outlet.badge}}</text>
   </view>
-  <view class="oc__body">
-    <text class="h2">{{outlet.name}}</text>
-    <view class="row gap-l mt-s">
-      <view class="row gap-s"><fa-icon name="star" size="24" color="#BA7517" /><text class="muted">{{outlet.rating}}</text></view>
-      <view class="row gap-s"><fa-icon name="map-pin" size="24" color="#6B7280" /><text class="muted">{{outlet.distance}}</text></view>
-      <view class="row gap-s"><fa-icon name="clock" size="24" color="#6B7280" /><text class="muted">{{outlet.eta}}</text></view>
+  <view class="oc__body row between">
+    <view class="col gap-s fill">
+      <text class="oc__name">{{outlet.name}}</text>
+      <view class="row gap-m oc__meta">
+        <view class="row gap-s"><fa-icon name="star" size="22" color="#F59E0B" /><text class="oc__metatxt">{{outlet.rating}}</text></view>
+        <view class="oc__dot"></view>
+        <view class="row gap-s"><fa-icon name="map-pin" size="22" color="#9AA0A6" /><text class="oc__metatxt">{{outlet.distance}}</text></view>
+        <view class="oc__dot"></view>
+        <view class="row gap-s"><fa-icon name="clock" size="22" color="#9AA0A6" /><text class="oc__metatxt">{{outlet.eta}}</text></view>
+      </view>
     </view>
+    <fa-icon name="chevron-right" size="24" color="#C7D0DE" />
   </view>
 </view>

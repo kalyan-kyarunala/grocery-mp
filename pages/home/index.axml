@@ -36,9 +36,15 @@
   </scroll-view>
 
   <!-- Outlets -->
-  <view class="pad-x">
-    <text class="h2">Grocery outlets nearby</text>
-    <view class="col gap-m mt-m">
+  <view class="pad-x mt-s">
+    <view class="row between">
+      <text class="h2">Grocery outlets nearby</text>
+      <view class="row gap-xs seeall" onTap="seeAllOutlets">
+        <text class="link">See all</text>
+        <fa-icon name="chevron-right" size="20" color="#1A56DB" />
+      </view>
+    </view>
+    <view class="col gap-l mt-m">
       <outlet-card a:for="{{outlets}}" a:key="id" outlet="{{item}}" onOpen="openStore" />
     </view>
   </view>

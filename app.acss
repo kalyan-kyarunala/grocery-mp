@@ -50,6 +50,7 @@ page {
 .center { align-items: center; justify-content: center; }
 .wrap { flex-wrap: wrap; }
 .fill { flex: 1; }
+.gap-xs { gap: 6rpx; }
 .gap-s { gap: 12rpx; }
 .gap-m { gap: 20rpx; }
 .gap-l { gap: 28rpx; }
@@ -75,7 +76,7 @@ page {
 .faint { font-size: 22rpx; color: var(--c-faint); }
 .price { font-size: 28rpx; font-weight: 600; color: var(--c-accent); }
 .strong { font-weight: 600; }
-.link { font-size: 24rpx; color: var(--c-primary); }
+.link { font-size: 24rpx; color: var(--c-primary); font-weight: 600; }
 
 /* ---- Chips / badges ---- */
 .chip {

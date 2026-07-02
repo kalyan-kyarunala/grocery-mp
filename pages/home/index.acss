@@ -21,5 +21,7 @@
 }
 .chips .chip { display: inline-block; margin-right: 14rpx; }
 
+.seeall { padding: 8rpx 0 8rpx 16rpx; margin-right: -16rpx; }
+
 /* Clears the fixed tab-bar so the last outlet card isn't hidden behind it. */
 .screen { padding-bottom: calc(150rpx + env(safe-area-inset-bottom)); }

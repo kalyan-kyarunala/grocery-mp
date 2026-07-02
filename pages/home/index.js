@@ -25,6 +25,7 @@ Page({
   setFilter(e) { this.setData({ activeFilter: e.target.dataset.f }); },
   openPromo(promo) { my.showToast({ content: 'Promo ' + promo.code + ' applied', type: 'success' }); },
   openStore(outlet) { my.navigateTo({ url: '/pages/store/index?id=' + outlet.id }); },
+  seeAllOutlets() { my.showToast({ content: 'Coming soon', type: 'none' }); },
   openLocationPicker() { my.navigateTo({ url: '/pages/location/index' }); },
   noop() {}
 });
