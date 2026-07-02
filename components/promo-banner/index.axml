@@ -1,4 +1,14 @@
 <view class="pb" style="background:{{promo.bg}}" onTap="tap">
+  <!-- bunting 
+  <view class="pb__bunting">
+    <view class="flag" a:for="{{flags}}" a:key="*this" style="border-top-color:{{item}}"></view>
+  </view>
+-->
+  <!-- floating discount accents -->
+  <view class="pb__coin pb__coin--a">%</view>
+  <view class="pb__coin pb__coin--b">%</view>
+  <view class="spark spark--a"></view>
+
   <!-- ground -->
   <view class="pb__ground"></view>
 
