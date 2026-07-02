@@ -1,0 +1,16 @@
+.searchtop {
+  display: flex; align-items: center; gap: 12rpx;
+  padding: 20rpx 28rpx; background: #fff; border-bottom: 1rpx solid var(--c-line);
+}
+.searchtop__field {
+  flex: 1; display: flex; align-items: center; gap: 14rpx;
+  background: var(--c-bg); border-radius: 18rpx; min-height: var(--tap); padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.searchtop__input { flex: 1; font-size: 26rpx; color: var(--c-text); height: var(--tap); }
+
+.chip { display: inline-block; }
+
+.empty { display: flex; flex-direction: column; align-items: center; gap: 12rpx; padding: 80rpx 0; }
+.empty__t { font-size: 28rpx; font-weight: 600; color: var(--c-text); }
+.empty__sub { font-size: 24rpx; color: var(--c-muted); }

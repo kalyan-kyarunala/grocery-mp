@@ -1,0 +1,46 @@
+<view class="screen">
+  <view class="toast {{toast.show ? 'toast--in' : ''}}">
+    <view class="toast__badge"><fa-icon name="circle-check" size="60" color="#fff" /></view>
+    <text class="toast__title">Added to cart!</text>
+    <text class="toast__sub">{{toast.name}}</text>
+  </view>
+
+  <view class="searchtop">
+    <view class="tap" onTap="back"><fa-icon name="arrow-left" size="36" color="#1A1A1A" /></view>
+    <view class="searchtop__field">
+      <fa-icon name="search" size="30" color="#9AA0A6" />
+      <input class="searchtop__input" placeholder="Search for products, categories, stores, and more"
+             value="{{query}}" focus="{{true}}" confirm-type="search"
+             onInput="onInput" onConfirm="onInput" />
+      <view a:if="{{query}}" class="tap" catchTap="clear"><fa-icon name="circle-xmark" size="30" color="#C7D0DE" /></view>
+    </view>
+  </view>
+
+  <!-- No query yet: suggestions -->
+  <view a:if="{{!query}}" class="pad-x mt-l">
+    <text class="h2">Popular searches</text>
+    <view class="row gap-s wrap mt-m">
+      <view class="chip" a:for="{{popular}}" a:key="*this" data-q="{{item}}" onTap="pickPopular">{{item}}</view>
+    </view>
+  </view>
+
+  <!-- Results -->
+  <view a:if="{{query}}" class="pad-x">
+    <text class="muted">{{results.length}} result{{results.length === 1 ? '' : 's'}} for "{{query}}"</text>
+    <view a:if="{{results.length}}" class="grid">
+      <view class="grid__cell" a:for="{{results}}" a:key="id">
+        <product-card item="{{item}}" onOpen="openProduct" onAdd="addToCart" onChange="changeQty" />
+      </view>
+    </view>
+    <view a:else class="empty mt-l">
+      <fa-icon name="search" size="56" color="#C7D0DE" />
+      <text class="empty__t">No products found</text>
+      <text class="empty__sub">Try a different search term</text>
+    </view>
+  </view>
+
+  <view class="cartbar" a:if="{{cartCount > 0}}" onTap="goCart">
+    <view class="row gap-s"><fa-icon name="cart" size="34" color="#fff" /><text class="cartbar__t">{{cartCount}} items</text></view>
+    <view class="row gap-s"><text class="cartbar__t">{{cartTotalText}}</text><fa-icon name="chevron-right" size="26" color="#fff" /></view>
+  </view>
+</view>

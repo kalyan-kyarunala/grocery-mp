@@ -27,5 +27,5 @@ Page({
   openStore(outlet) { my.navigateTo({ url: '/pages/store/index?id=' + outlet.id }); },
   seeAllOutlets() { my.showToast({ content: 'Coming soon', type: 'none' }); },
   openLocationPicker() { my.navigateTo({ url: '/pages/location/index' }); },
-  noop() {}
+  goSearch() { my.navigateTo({ url: '/pages/search/index' }); }
 });

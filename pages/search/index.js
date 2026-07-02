@@ -1,61 +1,62 @@
 var app = getApp();
 var fmt = require('../../utils/format.js');
 var PRODUCTS_BY_CAT = require('../../utils/catalog.js').PRODUCTS_BY_CAT;
-var STORES = {
-  jg: { name: 'Jaya Grocer — Mid Valley', rating: '4.8', distance: '1.2 km', eta: '25 min', bg: '#E8EEFB', iconColor: '#1A56DB', image: '/images/store1.jpeg' },
-  vg: { name: 'Village Grocer — The Gardens', rating: '4.6', distance: '2.0 km', eta: '30 min', bg: '#E9F7EF', iconColor: '#16A34A', image: '/images/store2.jpeg' },
-  lh: { name: 'Lotus’s — Bangsar South', rating: '4.5', distance: '2.4 km', eta: '35 min', bg: '#FBEEE6', iconColor: '#B45309', image: '/images/store3.jpeg' }
-};
+
+var ALL_PRODUCTS = Object.keys(PRODUCTS_BY_CAT).reduce(function (acc, cat) {
+  return acc.concat(PRODUCTS_BY_CAT[cat].map(function (p) {
+    return Object.assign({}, p, { category: cat });
+  }));
+}, []);
+
+var DEFAULT_STORE_ID = 'jg';
+var DEFAULT_STORE_NAME = 'Jaya Grocer — Mid Valley';
+
 Page({
   data: {
-    store: STORES.jg,
-    storeId: 'jg',
-    categories: ['Veggies', 'Fruits', 'Cooking', 'Snacks', 'Bakery'],
-    activeCat: 'Veggies',
-    products: PRODUCTS_BY_CAT.Veggies,
+    query: '',
+    results: [],
+    popular: ['Apple', 'Banana', 'Tomato', 'Bread', 'Chips', 'Cooking Oil'],
     cartCount: 0,
     cartTotalText: 'RM 0.00',
     toast: { show: false, name: '' }
   },
-  onLoad(q) {
-    var sid = q.id || 'jg';
-    this.setData({ store: STORES[sid] || STORES.jg, storeId: sid });
-  },
-  onShow() { this.refreshCart(); this.syncQty(); },
-  setCat(e) {
-    var cat = e.target.dataset.c;
-    this.setData({ activeCat: cat, products: PRODUCTS_BY_CAT[cat] || [] });
+  onShow() { this.refreshCart(); this.runSearch(this.data.query); },
+  onInput(e) { this.runSearch(e.detail.value); },
+  pickPopular(e) { this.runSearch(e.target.dataset.q); },
+  clear() { this.runSearch(''); },
+  runSearch(query) {
+    var q = (query || '').trim().toLowerCase();
+    var results = q ? ALL_PRODUCTS.filter(function (p) { return p.name.toLowerCase().indexOf(q) !== -1; }) : [];
+    this.setData({ query: query || '', results: results });
     this.syncQty();
   },
   openProduct(item) {
-    app.globalData.selectedProduct = Object.assign({}, item, { category: this.data.activeCat });
-    app.globalData.currentStoreId = this.data.storeId;
-    app.globalData.currentStoreName = this.data.store.name;
+    app.globalData.selectedProduct = Object.assign({}, item);
+    app.globalData.currentStoreId = DEFAULT_STORE_ID;
+    app.globalData.currentStoreName = DEFAULT_STORE_NAME;
     my.navigateTo({ url: '/pages/product/index?id=' + item.id });
   },
   addToCart(item) {
     var self = this;
-    var sid = this.data.storeId;
-    var sname = this.data.store.name;
-    if (app.globalData.cart.length > 0 && app.globalData.cartStoreId && app.globalData.cartStoreId !== sid) {
+    if (app.globalData.cart.length > 0 && app.globalData.cartStoreId && app.globalData.cartStoreId !== DEFAULT_STORE_ID) {
       my.confirm({
         title: 'Start a new cart?',
         content: 'Your cart has items from ' + app.globalData.cartStoreName + '. Clear it and add from this store?',
         confirmButtonText: 'Clear & Add',
         cancelButtonText: 'Keep cart',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             app.globalData.cart = [];
-            app.globalData.cartStoreId = sid;
-            app.globalData.cartStoreName = sname;
+            app.globalData.cartStoreId = DEFAULT_STORE_ID;
+            app.globalData.cartStoreName = DEFAULT_STORE_NAME;
             self._doAdd(item);
           }
         }
       });
       return;
     }
-    app.globalData.cartStoreId = sid;
-    app.globalData.cartStoreName = sname;
+    app.globalData.cartStoreId = DEFAULT_STORE_ID;
+    app.globalData.cartStoreName = DEFAULT_STORE_NAME;
     this._doAdd(item);
   },
   _doAdd(item) {
@@ -90,11 +91,11 @@ Page({
   },
   syncQty() {
     var cart = app.globalData.cart;
-    var products = this.data.products.map(function (p) {
+    var results = this.data.results.map(function (p) {
       var found = cart.filter(function (c) { return c.id === p.id; })[0];
       return Object.assign({}, p, { qty: found ? found.qty : 0 });
     });
-    this.setData({ products: products });
+    this.setData({ results: results });
   },
   refreshCart() {
     var cart = app.globalData.cart;
@@ -102,5 +103,6 @@ Page({
     var t = fmt.cartTotals(cart, 0);
     this.setData({ cartCount: count, cartTotalText: fmt.rm(t.total) });
   },
-  goCart() { my.navigateTo({ url: '/pages/cart/index' }); }
+  goCart() { my.navigateTo({ url: '/pages/cart/index' }); },
+  back() { my.navigateBack(); }
 });

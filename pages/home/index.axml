@@ -16,7 +16,7 @@
         </view>
       </view>
 
-      <view class="searchbar mt-m" onTap="noop">
+      <view class="searchbar mt-m" onTap="goSearch">
         <fa-icon name="search" size="32" color="#9AA0A6" />
         <text class="faint">Search for products, categories, stores, and more</text>
       </view>
