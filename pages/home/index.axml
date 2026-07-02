@@ -11,6 +11,9 @@
             <fa-icon name="chevron-down" size="20" color="#fff" />
           </view>
         </view>
+        <view class="locbar__brand">
+          <image class="locbar__logo" src="/images/groceria_logo_mark_white.svg" mode="aspectFit" />
+        </view>
       </view>
 
       <view class="searchbar mt-m" onTap="noop">

@@ -6,7 +6,7 @@ Page({
     activeFilter: 'All',
     promo: {
       id: 'first15', code: 'FRESH15', kicker: 'MINIMUM',
-      amount: 'RM15', off: 'OFF', subtitle: 'on your first order · min. spend RM50',
+      amount: 'RM15', off: 'OFF', subtitle: 'on your first order min spend RM50',
       cta: 'Shop now', bg: 'linear-gradient(165deg,#1E40AF,#1A56DB 70%)',
       mascots: [
         { src: '/images/apple.svg', delay: 0 },
