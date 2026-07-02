@@ -1,0 +1,49 @@
+.addr-scroll { height: calc(100vh - 88rpx); box-sizing: border-box; }
+
+/* Add new button */
+.addr-addbtn {
+  display: flex; align-items: center; justify-content: center; gap: 12rpx;
+  min-height: var(--tap); background: var(--c-primary); border-radius: var(--radius-pill);
+}
+.addr-addbtn__t { font-size: 28rpx; font-weight: 600; color: #fff; }
+
+/* Empty state */
+.addr-empty { display: flex; flex-direction: column; align-items: center; padding: 90rpx 40rpx; }
+.addr-empty__pin {
+  width: 96rpx; height: 96rpx; border-radius: 50%; background: var(--c-primary);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20rpx;
+}
+.addr-empty__title { font-size: 30rpx; font-weight: 600; color: var(--c-text); }
+.addr-empty__sub { font-size: 24rpx; color: var(--c-muted); margin-top: 6rpx; }
+
+/* Address card */
+.addr-card { padding: 22rpx; margin-bottom: 20rpx; }
+.addr-default-badge { background: var(--c-accent-50); border-radius: 10rpx; padding: 6rpx 14rpx; }
+.addr-default-badge__t { font-size: 20rpx; font-weight: 700; color: var(--c-accent-700); }
+.addr-action { font-size: 24rpx; font-weight: 600; color: var(--c-primary); }
+.addr-action--danger { color: var(--c-danger); }
+.addr-name { font-size: 28rpx; font-weight: 700; color: var(--c-text); display: block; }
+.addr-phone { font-size: 24rpx; color: var(--c-muted); display: block; margin-top: 2rpx; }
+.addr-line { font-size: 24rpx; color: var(--c-muted); display: block; line-height: 1.5; margin-top: 4rpx; }
+.addr-setdefault { margin-top: 16rpx; padding-top: 16rpx; border-top: 1rpx solid var(--c-line); }
+.addr-setdefault__t { font-size: 24rpx; font-weight: 600; color: var(--c-primary); }
+
+/* Bottom sheets (add/edit form, state picker) */
+.sheet-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 200; display: flex; align-items: flex-end; }
+.sheet { width: 100%; max-height: 88vh; background: var(--c-bg); border-radius: 28rpx 28rpx 0 0; overflow: hidden; display: flex; flex-direction: column; }
+.sheet--picker { max-height: 70vh; }
+.sheet__header { display: flex; align-items: center; justify-content: space-between; padding: 24rpx 28rpx; background: #fff; border-bottom: 1rpx solid var(--c-line); }
+.sheet__title { font-size: 30rpx; font-weight: 700; color: var(--c-text); }
+.sheet__body { padding: 24rpx 28rpx; box-sizing: border-box; }
+.sheet__body--picker { padding: 0 28rpx; }
+
+.field-label { font-size: 24rpx; color: var(--c-muted); display: block; }
+.field--select { display: flex; align-items: center; justify-content: space-between; }
+
+.checkbox {
+  width: 40rpx; height: 40rpx; border: 1rpx solid var(--c-line); border-radius: 8rpx;
+  background: #fff; display: flex; align-items: center; justify-content: center; flex: none;
+}
+.checkbox--on { background: var(--c-primary); border-color: var(--c-primary); }
+
+.picker-opt { padding: 24rpx 0; border-bottom: 1rpx solid var(--c-line); }

@@ -1,48 +1,138 @@
 <view class="screen screen--flush">
-  <view class="appbar">
-    <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#1A1A1A" /></view>
-    <text class="title">Your cart</text>
-  </view>
-
-  <!-- Delivery / pickup toggle -->
-  <view class="seg pad-x">
-    <view class="seg__opt {{mode === 'delivery' ? 'seg__opt--on' : ''}}" data-m="delivery" onTap="setMode">
-      <fa-icon name="truck" size="30" color="{{mode === 'delivery' ? '#fff' : '#6B7280'}}" /><text>Delivery</text>
+  <!-- Hero -->
+  <view class="carthero">
+    <view class="row between">
+      <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#fff" /></view>
+      <text class="carthero__title">Your Cart</text>
+      <view style="width:88rpx"></view>
     </view>
-    <view class="seg__opt {{mode === 'pickup' ? 'seg__opt--on' : ''}}" data-m="pickup" onTap="setMode">
-      <fa-icon name="store" size="30" color="{{mode === 'pickup' ? '#fff' : '#6B7280'}}" /><text>Pickup</text>
-    </view>
-  </view>
-
-  <!-- Items -->
-  <view class="pad-x">
-    <view class="ci" a:for="{{cart}}" a:key="id">
-      <view class="ci__thumb" style="background:{{item.bg}}"><fa-icon name="{{item.icon}}" size="40" color="{{item.iconColor}}" /></view>
-      <view class="fill">
-        <text class="strong">{{item.name}}</text>
-        <text class="price" style="display:block">{{item.lineText}}</text>
+    <view a:if="{{cart.length > 0}}" class="row between mt-m">
+      <view class="col">
+        <text class="carthero__label">Cart Total</text>
+        <text class="carthero__amt">{{totalText}}</text>
       </view>
-      <qty-stepper value="{{item.qty}}" min="0" id="{{item.id}}" onChange="changeQty" />
+      <view class="carthero__badge">
+        <text class="carthero__badgenum">{{itemCount}}</text>
+        <text class="carthero__badgetxt">{{itemCount === 1 ? 'item' : 'items'}}</text>
+      </view>
     </view>
-    <view a:if="{{cart.length === 0}}" class="empty"><fa-icon name="cart" size="80" color="#D6D6CF" /><text class="muted mt-m">Your cart is empty</text></view>
   </view>
 
-  <!-- Delivery address (delivery mode only) -->
-  <view a:if="{{mode === 'delivery' && cart.length > 0}}" class="card pad" style="margin:24rpx 28rpx">
-    <view class="row gap-s"><fa-icon name="map-pin" size="30" color="#1A56DB" /><text class="strong">Delivery address</text></view>
-    <input class="field mt-s" placeholder="Unit, building name" value="{{addr1}}" onInput="onAddr1" />
-    <input class="field mt-s" placeholder="Street, postcode, city" value="{{addr2}}" onInput="onAddr2" />
+  <view a:if="{{cart.length > 0}}">
+    <!-- Tip banner -->
+    <view class="pad-x mt-m">
+      <view class="tip row gap-s">
+        <fa-icon name="gift" size="30" color="#1A56DB" />
+        <text class="tip__txt">Apply coupon codes at checkout for the best price</text>
+      </view>
+    </view>
+
+    <!-- Delivery / pickup toggle -->
+    <view class="seg pad-x">
+      <view class="seg__opt {{mode === 'delivery' ? 'seg__opt--on' : ''}}" data-m="delivery" onTap="setMode">
+        <fa-icon name="truck" size="30" color="{{mode === 'delivery' ? '#fff' : '#6B7280'}}" /><text>Delivery</text>
+      </view>
+      <view class="seg__opt {{mode === 'pickup' ? 'seg__opt--on' : ''}}" data-m="pickup" onTap="setMode">
+        <fa-icon name="store" size="30" color="{{mode === 'pickup' ? '#fff' : '#6B7280'}}" /><text>Pickup</text>
+      </view>
+    </view>
+
+    <!-- Items -->
+    <view class="row between pad-x mt-l">
+      <text class="h2">Items in your cart · {{itemCount}}</text>
+      <view class="clearbtn tap" onTap="clearCart">
+        <fa-icon name="xmark" size="20" color="#DC2626" /><text class="clearbtn__t">Clear Cart</text>
+      </view>
+    </view>
+
+    <view class="pad-x mt-m">
+      <view class="ci card" a:for="{{cart}}" a:key="id">
+        <view class="row gap-m">
+          <view class="ci__thumb">
+            <image a:if="{{item.image}}" class="ci__img" src="{{item.image}}" mode="aspectFill" />
+            <fa-icon a:else name="{{item.icon || 'basket'}}" size="36" color="{{item.iconColor || '#1A56DB'}}" />
+          </view>
+          <view class="fill col gap-xs">
+            <text class="ci__name">{{item.name}}</text>
+            <text a:if="{{item.unit}}" class="ci__unit">{{item.unit}}</text>
+            <text class="ci__price">{{item.priceText}}</text>
+          </view>
+          <view class="tap" catchTap="removeItem" data-id="{{item.id}}"><fa-icon name="xmark" size="26" color="#9AA0A6" /></view>
+        </view>
+        <view class="row between mt-s ci__footer">
+          <qty-stepper value="{{item.qty}}" min="0" id="{{item.id}}" onChange="changeQty" />
+          <view class="col" style="align-items:flex-end">
+            <text class="faint">Item Total</text>
+            <text class="strong">{{item.lineText}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Free delivery progress -->
+    <view a:if="{{mode === 'delivery'}}" class="pad-x mt-s">
+      <view class="progress">
+        <view class="row gap-s">
+          <fa-icon name="truck" size="26" color="#16A34A" />
+          <text a:if="{{!freeUnlocked}}" class="progress__txt">Add {{remainingText}} more for FREE delivery</text>
+          <text a:else class="progress__txt">You've unlocked FREE delivery!</text>
+        </view>
+        <view class="progress__track"><view class="progress__fill" style="width:{{progressPct}}%"></view></view>
+      </view>
+    </view>
+
+    <!-- Delivery address (delivery mode only) -->
+    <view a:if="{{mode === 'delivery'}}" class="pad-x mt-s">
+      <text class="h2">Delivery Address</text>
+      <view class="addrcard tap mt-m" onTap="goManageAddress">
+        <view a:if="{{savedAddress}}" class="row gap-m fill">
+          <view class="addrcard__pin addrcard__pin--sm"><fa-icon name="map-pin" size="26" color="#fff" /></view>
+          <view class="col fill">
+            <view class="row gap-s">
+              <view class="addr-type-badge"><text class="addr-type-badge__t">{{savedAddress.type}}</text></view>
+              <text class="strong">{{savedAddress.recipientName}}</text>
+            </view>
+            <text class="muted mt-xs">{{savedAddress.address}}, {{savedAddress.city}} {{savedAddress.postalCode}}</text>
+          </view>
+          <fa-icon name="chevron-right" size="26" color="#9AA0A6" />
+        </view>
+        <view a:else class="col center addrcard__empty">
+          <view class="addrcard__pin"><fa-icon name="map-pin" size="34" color="#fff" /></view>
+          <text class="strong mt-s">No delivery address found</text>
+          <text class="faint">Tap here to add a delivery address</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Order summary -->
+    <view class="pad-x mt-s">
+      <view class="summary">
+        <text class="h2">Order Summary</text>
+        <view class="summary__row row between mt-m"><text class="muted">Total MRP</text><text class="muted">{{subtotalText}}</text></view>
+        <view class="summary__row row between"><text class="muted">Discount</text><text class="muted">- {{discountText}}</text></view>
+        <view class="summary__row row between"><text class="muted">Shipping Fee</text><text class="{{freeUnlocked ? 'summary__free' : 'muted'}}">{{feeText}}</text></view>
+        <view class="divider mt-s"></view>
+        <view class="summary__row row between mt-s"><text class="h2">Grand Total</text><text class="h2">{{totalText}}</text></view>
+      </view>
+    </view>
   </view>
 
-  <!-- Totals -->
-  <view a:if="{{cart.length > 0}}" class="pad-x mt-s">
-    <view class="row between"><text class="muted">Subtotal</text><text class="muted">{{subtotalText}}</text></view>
-    <view class="row between mt-s"><text class="muted">Delivery fee</text><text class="muted">{{feeText}}</text></view>
-    <view class="divider mt-s"></view>
-    <view class="row between mt-s"><text class="h2">Total</text><text class="h2">{{totalText}}</text></view>
+  <view a:if="{{cart.length === 0}}" class="pad-x mt-l">
+    <view class="empty card">
+      <view class="empty__icon"><fa-icon name="cart" size="88" color="#1A56DB" /></view>
+      <text class="empty__title">Your Cart is Empty!</text>
+      <text class="empty__sub">Looks like you have not added anything to your cart yet.</text>
+      <view class="mt-l"><ds-button text="Start Shopping" type="primary" block="{{true}}" onTap="startShopping" /></view>
+    </view>
   </view>
 
   <view class="footerbar" a:if="{{cart.length > 0}}">
-    <ds-button text="Proceed to checkout" type="primary" block="{{true}}" onTap="checkout" />
+    <view class="row between">
+      <view class="col">
+        <text class="faint">Grand Total</text>
+        <text class="footerbar__amt">{{totalText}}</text>
+      </view>
+      <ds-button text="Checkout →" type="primary" onTap="checkout" />
+    </view>
   </view>
 </view>
