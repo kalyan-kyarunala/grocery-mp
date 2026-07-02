@@ -1,17 +1,23 @@
 <view class="tabbar">
   <view class="tabbar__item tap" onTap="go" data-key="home">
     <fa-icon name="home" size="40" color="{{active === 'home' ? '#1A56DB' : '#9AA0A6'}}" />
+    <text class="tabbar__label {{active === 'home' ? 'active' : ''}}">Home</text>
   </view>
-  <view class="tabbar__item tap" onTap="go" data-key="search">
-    <fa-icon name="search" size="40" color="{{active === 'search' ? '#1A56DB' : '#9AA0A6'}}" />
+  <view class="tabbar__item tap" onTap="go" data-key="wishlist">
+    <fa-icon name="heart" size="40" color="{{active === 'wishlist' ? '#1A56DB' : '#9AA0A6'}}" />
+    <text class="tabbar__label {{active === 'wishlist' ? 'active' : ''}}">Wishlist</text>
   </view>
-  <view class="tabbar__item tap" onTap="go" data-key="cart">
-    <fa-icon name="cart" size="40" color="{{active === 'cart' ? '#1A56DB' : '#9AA0A6'}}" />
+  <view class="tabbar__item tabbar__item--raised tap" onTap="go" data-key="cart">
+    <view class="tabbar__fab">
+      <fa-icon name="cart" size="40" color="#ffffff" />
+    </view>
   </view>
   <view class="tabbar__item tap" onTap="go" data-key="orders">
-    <fa-icon name="receipt" size="40" color="{{active === 'orders' ? '#1A56DB' : '#9AA0A6'}}" />
+    <fa-icon name="truck" size="40" color="{{active === 'orders' ? '#1A56DB' : '#9AA0A6'}}" />
+    <text class="tabbar__label {{active === 'orders' ? 'active' : ''}}">Orders</text>
   </view>
   <view class="tabbar__item tap" onTap="go" data-key="profile">
     <fa-icon name="user" size="40" color="{{active === 'profile' ? '#1A56DB' : '#9AA0A6'}}" />
+    <text class="tabbar__label {{active === 'profile' ? 'active' : ''}}">Profile</text>
   </view>
 </view>

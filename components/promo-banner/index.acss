@@ -5,22 +5,22 @@
 /* Main offer content: flex column, so it always sits below the overlaid
    location/search header (via padding-top) and never overlaps it, no
    matter how tall or short the banner ends up being. */
-.pb__content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: 270rpx 40rpx 28rpx; box-sizing: border-box; }
+.pb__content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: 260rpx 40rpx 24rpx; box-sizing: border-box; }
 
-.pb__sticker { flex: none; transform: rotate(-2deg); background: #fff; border-radius: 32rpx; padding: 20rpx 40rpx; text-align: center; box-shadow: 0 0 0 8rpx #16A34A, 0 18rpx 40rpx rgba(0,0,0,.26); }
-.pb__kicker { display: block; color: #16A34A; font-weight: 700; font-size: 24rpx; letter-spacing: 4rpx; }
-.pb__amtrow { display: flex; align-items: baseline; justify-content: center; gap: 14rpx; }
-.pb__amt { color: #1A56DB; font-weight: 800; font-size: 84rpx; line-height: 1; }
-.pb__off { color: #16A34A; font-weight: 800; font-size: 62rpx; line-height: 1; }
-.pb__sub { flex: none; margin-top: 20rpx; text-align: center; color: #EAF1FF; font-size: 24rpx; font-weight: 600; }
+.pb__sticker { flex: none; transform: rotate(-2deg); background: #fff; border-radius: 28rpx; padding: 16rpx 32rpx; text-align: center; box-shadow: 0 0 0 6rpx #16A34A, 0 14rpx 32rpx rgba(0,0,0,.26); }
+.pb__kicker { display: block; color: #16A34A; font-weight: 700; font-size: 20rpx; letter-spacing: 3rpx; }
+.pb__amtrow { display: flex; align-items: baseline; justify-content: center; gap: 12rpx; }
+.pb__amt { color: #1A56DB; font-weight: 800; font-size: 64rpx; line-height: 1; }
+.pb__off { color: #16A34A; font-weight: 800; font-size: 46rpx; line-height: 1; }
+.pb__sub { flex: none; margin-top: 20rpx; text-align: center; color: #EAF1FF; font-size: 22rpx; font-weight: 600; }
 
-.pb__spacer { flex: 1; min-height: 12rpx; }
+.pb__spacer { flex: 1; min-height: 8rpx; max-height: 56rpx; }
 
-.pb__cast { flex: none; display: flex; justify-content: center; align-items: flex-end; gap: 12rpx; margin-bottom: 18rpx; }
-.pb__mascot { width: 108rpx; height: 120rpx; animation: pb-bob 2.4s ease-in-out infinite; }
+.pb__cast { flex: none; display: flex; justify-content: center; align-items: flex-end; gap: 10rpx; margin-bottom: 14rpx; }
+.pb__mascot { width: 90rpx; height: 96rpx; animation: pb-bob 2.4s ease-in-out infinite; }
 
-.pb__cta { flex: none; display: flex; align-items: center; gap: 10rpx; background: #16A34A; border-radius: 999rpx; padding: 20rpx 42rpx; box-shadow: 0 12rpx 26rpx rgba(0,0,0,.3); animation: pb-pulse 1.8s ease-in-out infinite; }
-.pb__ctatxt { color: #fff; font-weight: 700; font-size: 30rpx; }
+.pb__cta { flex: none; display: flex; align-items: center; gap: 10rpx; background: #16A34A; border-radius: 999rpx; padding: 16rpx 36rpx; box-shadow: 0 12rpx 26rpx rgba(0,0,0,.3); animation: pb-pulse 1.8s ease-in-out infinite; }
+.pb__ctatxt { color: #fff; font-weight: 700; font-size: 26rpx; }
 
 .pb__shine { position: absolute; top: 0; left: -45%; width: 34%; height: 100%; background: linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.35), rgba(255,255,255,0)); transform: skewX(-18deg); animation: pb-shine 4.5s ease-in-out infinite; }
 

@@ -2,7 +2,7 @@
    block, with the location bar + search box floating on top of it as a
    transparent overlay (no seam between header and banner), together
    taking up roughly half the viewport height. */
-.hero { position: relative; background: var(--c-primary); height: 50vh; min-height: 720rpx; overflow: hidden; }
+.hero { position: relative; background: var(--c-primary); height: 40vh; min-height: 650rpx; overflow: hidden; }
 
 .promo-wrap { position: absolute; inset: 0; }
 
@@ -20,3 +20,6 @@
   box-shadow: 0 4rpx 12rpx rgba(0,0,0,.06);
 }
 .chips .chip { display: inline-block; margin-right: 14rpx; }
+
+/* Clears the fixed tab-bar so the last outlet card isn't hidden behind it. */
+.screen { padding-bottom: calc(150rpx + env(safe-area-inset-bottom)); }

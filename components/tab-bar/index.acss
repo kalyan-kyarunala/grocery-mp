@@ -1,6 +1,21 @@
 .tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 100;
   display: flex; justify-content: space-around; align-items: center;
   background: #fff; border-top: 1rpx solid var(--c-line);
+  padding-top: 10rpx;
   padding-bottom: env(safe-area-inset-bottom);
 }
-.tabbar__item { flex: 1; height: 96rpx; }
+.tabbar__item {
+  flex: 1; height: 96rpx; position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4rpx;
+}
+.tabbar__label { font-size: 20rpx; color: #9AA0A6; }
+.tabbar__label.active { color: #1A56DB; font-weight: 600; }
+
+.tabbar__fab {
+  position: absolute; top: -34rpx; left: 50%; transform: translateX(-50%);
+  width: 96rpx; height: 96rpx; border-radius: 50%;
+  background: var(--c-primary); border: 6rpx solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10rpx 24rpx rgba(26,86,219,.4);
+}
