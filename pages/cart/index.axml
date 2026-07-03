@@ -57,7 +57,7 @@
             <text a:if="{{item.unit}}" class="ci__unit">{{item.unit}}</text>
             <text class="ci__price">{{item.priceText}}</text>
           </view>
-          <view class="tap" catchTap="removeItem" data-id="{{item.id}}"><fa-icon name="xmark" size="26" color="#9AA0A6" /></view>
+          <view class="tap" catchTap="removeItem" data-id="{{item.id}}"><fa-icon name="trash-can" size="26" color="#DC2626" /></view>
         </view>
         <view class="row between mt-s ci__footer">
           <qty-stepper value="{{item.qty}}" min="0" id="{{item.id}}" onChange="changeQty" />

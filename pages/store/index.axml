@@ -1,4 +1,4 @@
-<view class="screen">
+<view class="screen screen--flush">
   <view class="toast {{toast.show ? 'toast--in' : ''}}">
     <view class="toast__badge"><fa-icon name="circle-check" size="60" color="#fff" /></view>
     <text class="toast__title">Added to cart!</text>

@@ -7,7 +7,7 @@ var PRODUCTS_BY_CAT = {
     { id: 'orange', name: 'Orange', unit: 'per kg',    price: 7.50,  priceText: 'RM 7.50',  image: '/images/fruits/orange.jpeg', bg: '#FCEBEB' },
     { id: 'melon',  name: 'Melon',  unit: 'each',      price: 6.90,  priceText: 'RM 6.90',  image: '/images/fruits/melon.jpeg', bg: '#FCEBEB' },
     { id: 'mango',  name: 'Mango',  unit: 'per kg',    price: 8.90,  priceText: 'RM 8.90',  image: '/images/fruits/mango.jpeg', bg: '#FCEBEB' },
-    { id: 'guava',  name: 'Guava',  unit: 'per kg',    price: 5.90,  priceText: 'RM 5.90',  image: '/images/fruits/guava.jpeg', bg: '#FCEBEB' },
+    { id: 'guava',  name: 'Guava',  unit: 'per kg',    price: 5.90,  priceText: 'RM 5.90',  image: '/images/fruits/guava.jpeg', bg: '#FFFFFF' },
     { id: 'lime',   name: 'Lime',   unit: 'pack of 4', price: 3.20,  priceText: 'RM 3.20',  image: '/images/fruits/lime.jpeg', bg: '#FCEBEB' },
     { id: 'papaya', name: 'Papaya', unit: 'each',      price: 6.50,  priceText: 'RM 6.50',  image: '/images/fruits/papaya.jpeg', bg: '#FCEBEB' }
   ],
