@@ -1,3 +1,30 @@
 .pay { display: flex; align-items: center; gap: 18rpx; background: #fff; border: 1rpx solid #E3E1D9; border-radius: 18rpx; min-height: 108rpx; padding: 0 22rpx; }
 .pay--on { border: 2rpx solid var(--c-primary); background: var(--c-primary-50); }
-.pay__logo { width: 64rpx; height: 64rpx; border-radius: 14rpx; display: flex; align-items: center; justify-content: center; }
+.pay__logo { width: 64rpx; height: 64rpx; border-radius: 14rpx; display: flex; align-items: center; justify-content: center; flex: none; }
+
+/* rich checkout */
+.co-eta { display: flex; align-items: center; gap: 16rpx; background: var(--c-accent-50); border-radius: 18rpx; padding: 18rpx 22rpx; margin: 20rpx 28rpx; }
+.co-eta__ic { width: 64rpx; height: 64rpx; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
+.co-eta__t { font-size: 24rpx; color: #15803D; }
+.co-eta__s { font-size: 28rpx; font-weight: 700; color: #15803D; display: block; }
+
+.co-sec { display: flex; align-items: center; justify-content: space-between; margin: 24rpx 0 12rpx; }
+.co-sec__t { font-size: 26rpx; font-weight: 700; color: var(--c-text); }
+.co-sec__c { font-size: 24rpx; color: var(--c-muted); }
+
+.co-line + .co-line { margin-top: 14rpx; }
+
+.co-promo { display: flex; align-items: center; gap: 16rpx; background: #fff; border: 1rpx dashed var(--c-primary); border-radius: 18rpx; padding: 0 22rpx; min-height: 108rpx; }
+.co-promo__ic { width: 56rpx; height: 56rpx; border-radius: 14rpx; background: var(--c-primary-50); display: flex; align-items: center; justify-content: center; flex: none; }
+
+.co-addr { display: flex; align-items: center; gap: 16rpx; padding: 22rpx; }
+.co-addr__ic { width: 56rpx; height: 56rpx; border-radius: 14rpx; background: var(--c-primary-50); display: flex; align-items: center; justify-content: center; flex: none; }
+.co-addr__add { font-size: 24rpx; color: var(--c-primary); font-weight: 600; }
+
+.co-chip-ok { display: inline-flex; align-items: center; gap: 4rpx; font-size: 22rpx; font-weight: 600; color: #15803D; }
+
+.co-save { display: flex; align-items: center; gap: 8rpx; margin-top: 14rpx; background: var(--c-accent-50); border-radius: 12rpx; padding: 12rpx 16rpx; }
+.co-save__t { font-size: 22rpx; color: #15803D; font-weight: 600; }
+
+.co-secure { display: flex; align-items: center; justify-content: center; gap: 10rpx; margin: 22rpx 28rpx 8rpx; }
+.co-terms { display: block; text-align: center; font-size: 20rpx; color: var(--c-faint); margin-bottom: 12rpx; }

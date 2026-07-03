@@ -69,6 +69,12 @@
       </view>
     </view>
 
+    <view class="pad-x">
+      <view class="addmore tap" onTap="startShopping">
+        <fa-icon name="plus" size="24" color="#1A56DB" /><text class="link">Add more items</text>
+      </view>
+    </view>
+
     <!-- Free delivery progress -->
     <view a:if="{{mode === 'delivery'}}" class="pad-x mt-s">
       <view class="progress">

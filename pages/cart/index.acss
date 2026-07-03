@@ -29,6 +29,12 @@
 .ci__price { font-size: 26rpx; font-weight: 700; color: var(--c-accent); margin-top: 4rpx; }
 .ci__footer { border-top: 1rpx solid var(--c-line); padding-top: 16rpx; }
 
+/* Add more items */
+.addmore {
+  display: flex; align-items: center; justify-content: center; gap: 10rpx;
+  min-height: 76rpx; background: #fff; border: 1rpx dashed var(--c-primary); border-radius: var(--radius);
+}
+
 /* Free delivery progress */
 .progress { background: var(--c-accent-50); border-radius: 18rpx; padding: 18rpx 20rpx; }
 .progress__txt { font-size: 24rpx; color: var(--c-accent-700); font-weight: 600; }
@@ -48,7 +54,7 @@
 .summary { background: #fff; border-radius: var(--radius); padding: 24rpx; }
 .summary__free { color: var(--c-accent-700); font-weight: 700; }
 
-.footerbar__amt { font-size: 32rpx; font-weight: 800; color: var(--c-text); }
+.footerbar__amt { font-size: 36rpx; font-weight: 800; color: var(--c-accent); }
 
 .empty {
   display: flex; flex-direction: column; align-items: center; text-align: center;

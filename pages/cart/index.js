@@ -37,8 +37,7 @@ Page({
     });
   },
   setMode(e) { this.setData({ mode: e.target.dataset.m }, this.render); },
-  changeQty(v, e) {
-    var id = e.target.dataset.id;
+  changeQty(v, id) {
     var cart = app.globalData.cart;
     for (var i = 0; i < cart.length; i++) { if (cart[i].id === id) { cart[i].qty = v; break; } }
     app.globalData.cart = cart.filter(function (c) { return c.qty > 0; });
@@ -68,7 +67,7 @@ Page({
     });
   },
   goManageAddress() { my.navigateTo({ url: '/pages/manage-address/index' }); },
-  startShopping() { my.reLaunch({ url: '/pages/home/index' }); },
+  startShopping() { my.navigateBack();},
   checkout() { my.navigateTo({ url: '/pages/checkout/index?mode=' + this.data.mode }); },
   back() { my.navigateBack(); }
 });

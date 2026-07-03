@@ -1,52 +1,89 @@
-<view class="screen screen--flush">
+<view class="screen screen--flush co">
   <view class="appbar">
     <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#1A1A1A" /></view>
     <text class="title">Checkout</text>
   </view>
 
+  <!-- ETA banner -->
+  <view class="co-eta">
+    <view class="co-eta__ic"><fa-icon name="{{mode === 'pickup' ? 'store' : 'truck'}}" size="32" color="#16A34A" /></view>
+    <view class="fill">
+      <text class="co-eta__t">{{mode === 'pickup' ? 'Ready for pickup' : 'Estimated delivery'}}</text>
+      <text class="co-eta__s">{{etaText}}</text>
+    </view>
+    <text class="badge ok">{{mode === 'pickup' ? 'Pickup' : 'Delivery'}}</text>
+  </view>
+
   <!-- Order summary -->
-  <view class="card pad" style="margin:24rpx 28rpx">
-    <text class="strong">Order summary</text>
-    <view class="row between mt-s" a:for="{{cart}}" a:key="id">
+  <view class="pad-x">
+    <view class="co-sec"><text class="co-sec__t">Order summary</text><text class="co-sec__c">{{itemCount}} items</text></view>
+  </view>
+  <view class="card pad" style="margin:0 28rpx">
+    <view class="co-line row between" a:for="{{cart}}" a:key="id">
       <text class="muted">{{item.name}} × {{item.qty}}</text>
       <text class="muted">{{item.lineText}}</text>
     </view>
   </view>
 
+  <!-- Promo -->
+  <view class="co-promo tap" style="margin:20rpx 28rpx" onTap="applyPromo">
+    <view class="co-promo__ic"><fa-icon name="basket" size="30" color="#1A56DB" /></view>
+    <view class="fill">
+      <text class="strong">{{promoApplied ? promoCode + ' applied' : 'Apply promo code'}}</text>
+      <text class="faint" style="display:block">{{promoApplied ? 'You saved ' + discountText : 'Save more on your order'}}</text>
+    </view>
+    <fa-icon name="{{promoApplied ? 'circle-check' : 'chevron-right'}}" size="30" color="{{promoApplied ? '#16A34A' : '#9AA0A6'}}" />
+  </view>
+
   <!-- Address -->
-  <view class="card pad row gap-s" style="margin:0 28rpx">
-    <fa-icon name="map-pin" size="36" color="#1A56DB" />
+  <view class="pad-x">
+    <view class="co-sec"><text class="co-sec__t">{{mode === 'pickup' ? 'Pickup location' : 'Delivery address'}}</text></view>
+  </view>
+  <view class="card co-addr tap" style="margin:0 28rpx" onTap="editAddress">
+    <view class="co-addr__ic"><fa-icon name="map-pin" size="34" color="#1A56DB" /></view>
     <view class="fill">
       <text class="strong">{{mode === 'pickup' ? 'Pickup at outlet' : 'Deliver to home'}}</text>
-      <text class="faint" style="display:block">{{addressLine}}</text>
+      <text class="{{hasAddress ? 'faint' : 'co-addr__add'}}" style="display:block">{{addressLine}}</text>
     </view>
-    <fa-icon name="chevron-right" size="30" color="#9AA0A6" />
+    <text class="link">{{hasAddress ? 'Change' : 'Add'}}</text>
   </view>
 
-  <!-- Payment methods -->
-  <view class="pad-x mt-m">
-    <text class="strong">Payment method</text>
-    <view class="pay {{pay === 'tng' ? 'pay--on' : ''}} mt-s" data-p="tng" onTap="setPay">
-      <view class="pay__logo" style="background:#1A56DB"><fa-icon name="wallet" size="32" color="#fff" /></view>
-      <view class="fill"><text class="strong">TNG eWallet</text><text class="faint" style="display:block">Balance RM 142.60</text></view>
-      <fa-icon name="{{pay === 'tng' ? 'circle-check' : 'circle'}}" size="38" color="{{pay === 'tng' ? '#1A56DB' : '#CFCFC7'}}" />
+  <!-- Payment -->
+  <view class="pad-x">
+    <view class="co-sec"><text class="co-sec__t">Payment method</text></view>
+  </view>
+  <view class="pay pay--on" style="margin:0 28rpx" data-p="tng" onTap="setPay">
+    <view class="pay__logo" style="background:#1A56DB"><fa-icon name="wallet" size="32" color="#fff" /></view>
+    <view class="fill">
+      <text class="strong">TNG eWallet</text>
+      <view class="row gap-s" style="margin-top:4rpx">
+        <text class="faint">Balance RM 142.60</text>
+        <text class="co-chip-ok"><fa-icon name="check" size="20" color="#15803D" /> Sufficient</text>
+      </view>
     </view>
-    <view class="pay {{pay === 'card' ? 'pay--on' : ''}} mt-s" data-p="card" onTap="setPay">
-      <view class="pay__logo" style="background:#F1F1EE"><fa-icon name="card" size="32" color="#6B7280" /></view>
-      <view class="fill"><text class="strong">Card / FPX</text><text class="faint" style="display:block">Visa, Mastercard, online banking</text></view>
-      <fa-icon name="{{pay === 'card' ? 'circle-check' : 'circle'}}" size="38" color="{{pay === 'card' ? '#1A56DB' : '#CFCFC7'}}" />
-    </view>
+    <fa-icon name="circle-check" size="38" color="#1A56DB" />
   </view>
 
-  <!-- Totals -->
-  <view class="pad-x mt-m">
+  <!-- Bill -->
+  <view class="pad-x">
+    <view class="co-sec"><text class="co-sec__t">Bill details</text></view>
+  </view>
+  <view class="card pad" style="margin:0 28rpx">
     <view class="row between"><text class="muted">Subtotal</text><text class="muted">{{subtotalText}}</text></view>
     <view class="row between mt-s"><text class="muted">Delivery fee</text><text class="muted">{{feeText}}</text></view>
+    <view class="row between mt-s" a:if="{{discount > 0}}"><text class="muted">Discount</text><text style="color:var(--c-accent);font-weight:600">− {{discountText}}</text></view>
     <view class="divider mt-s"></view>
     <view class="row between mt-s"><text class="h2">Total</text><text class="h2" style="color:var(--c-accent)">{{totalText}}</text></view>
+    <view class="co-save" a:if="{{discount > 0}}"><fa-icon name="check" size="22" color="#15803D" /><text class="co-save__t">You saved {{discountText}} on this order</text></view>
   </view>
 
+  <view class="co-secure"><fa-icon name="lock" size="24" color="#9AA0A6" /><text class="faint">Payments secured by TNG eWallet</text></view>
+
+  <view style="height:60rpx"></view>
+
+  <!-- Footer -->
   <view class="footerbar">
+    <text class="co-terms">By placing this order you agree to Groceria's terms.</text>
     <ds-button text="Pay {{totalText}}" icon="lock" type="primary" block="{{true}}" onTap="pay" />
   </view>
 </view>
