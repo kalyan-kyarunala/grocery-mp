@@ -1,11 +1,5 @@
 {
-  "enableAppxNg": true,
-  "format": 2,
-  "compileType": "miniprogram",
+  "compileType": "mini",
   "miniprogramRoot": "./",
-  "compileOptions": {
-    "component2": true,
-    "enableNodeModuleBabelTransform": true
-  },
   "scripts": {}
 }
