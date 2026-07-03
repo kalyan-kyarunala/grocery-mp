@@ -62,22 +62,22 @@
           <view class="chip {{formType === item ? 'active' : ''}}" a:for="{{addressTypes}}" a:key="*this" data-type="{{item}}" onTap="onTypeTap">{{item}}</view>
         </view>
 
-        <text class="field-label mt-m">Recipient name *</text>
+        <text class="field-label mt-m">Recipient name <text class="field-req">*</text></text>
         <input class="field mt-xs" placeholder="Full name" value="{{formName}}" data-field="formName" onInput="onFormInput" />
 
-        <text class="field-label mt-m">Phone number *</text>
+        <text class="field-label mt-m">Phone number <text class="field-req">*</text></text>
         <input class="field mt-xs" placeholder="+60123456789" value="{{formPhone}}" data-field="formPhone" onInput="onFormInput" />
 
-        <text class="field-label mt-m">Address *</text>
+        <text class="field-label mt-m">Address <text class="field-req">*</text></text>
         <input class="field mt-xs" placeholder="Street address, unit, etc." value="{{formAddress}}" data-field="formAddress" onInput="onFormInput" />
 
-        <text class="field-label mt-m">City *</text>
+        <text class="field-label mt-m">City <text class="field-req">*</text></text>
         <input class="field mt-xs" placeholder="City" value="{{formCity}}" data-field="formCity" onInput="onFormInput" />
 
-        <text class="field-label mt-m">Postal code *</text>
+        <text class="field-label mt-m">Postal code <text class="field-req">*</text></text>
         <input class="field mt-xs" placeholder="Postal code" value="{{formPostalCode}}" data-field="formPostalCode" onInput="onFormInput" />
 
-        <text class="field-label mt-m">State *</text>
+        <text class="field-label mt-m">State <text class="field-req">*</text></text>
         <view class="field field--select mt-xs" onTap="onStateTap">
           <text class="{{formState ? '' : 'faint'}}">{{formState || 'Select state'}}</text>
           <fa-icon name="chevron-down" size="22" color="#9AA0A6" />

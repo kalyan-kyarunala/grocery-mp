@@ -1,3 +1,8 @@
+/* Colored header, scoped to this page only (the shared .appbar class is
+   plain white on every other page). */
+.co .appbar { background: var(--c-primary); border-bottom: none; }
+.co .appbar .title { color: #fff; }
+
 .pay { display: flex; align-items: center; gap: 18rpx; background: #fff; border: 1rpx solid #E3E1D9; border-radius: 18rpx; min-height: 108rpx; padding: 0 22rpx; }
 .pay--on { border: 2rpx solid var(--c-primary); background: var(--c-primary-50); }
 .pay__logo { width: 64rpx; height: 64rpx; border-radius: 14rpx; display: flex; align-items: center; justify-content: center; flex: none; }

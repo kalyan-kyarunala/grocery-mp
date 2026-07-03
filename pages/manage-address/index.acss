@@ -34,10 +34,11 @@
 .sheet--picker { max-height: 70vh; }
 .sheet__header { display: flex; align-items: center; justify-content: space-between; padding: 24rpx 28rpx; background: #fff; border-bottom: 1rpx solid var(--c-line); }
 .sheet__title { font-size: 30rpx; font-weight: 700; color: var(--c-text); }
-.sheet__body { padding: 24rpx 28rpx; box-sizing: border-box; }
+.sheet__body { flex: 1; min-height: 0; padding: 24rpx 28rpx calc(24rpx + env(safe-area-inset-bottom)); box-sizing: border-box; }
 .sheet__body--picker { padding: 0 28rpx; }
 
 .field-label { font-size: 24rpx; color: var(--c-muted); display: block; }
+.field-req { color: var(--c-danger); font-weight: 700; }
 .field--select { display: flex; align-items: center; justify-content: space-between; }
 
 .checkbox {

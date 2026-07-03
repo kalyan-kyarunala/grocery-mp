@@ -1,6 +1,6 @@
 <view class="screen screen--flush co">
   <view class="appbar">
-    <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#1A1A1A" /></view>
+    <view class="tap" onTap="back" style="margin-left:-16rpx"><fa-icon name="arrow-left" size="36" color="#fff" /></view>
     <text class="title">Checkout</text>
   </view>
 
@@ -53,7 +53,7 @@
     <view class="co-sec"><text class="co-sec__t">Payment method</text></view>
   </view>
   <view class="pay pay--on" style="margin:0 28rpx" data-p="tng" onTap="setPay">
-    <view class="pay__logo" style="background:#1A56DB"><fa-icon name="wallet" size="32" color="#fff" /></view>
+    <image class="pay__logo" src="/images/tngwallet-logo.svg" mode="aspectFit" />
     <view class="fill">
       <text class="strong">TNG eWallet</text>
       <view class="row gap-s" style="margin-top:4rpx">

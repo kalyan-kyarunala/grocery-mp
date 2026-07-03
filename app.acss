@@ -126,7 +126,7 @@ page {
 .footerbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: #fff; border-top: 1rpx solid var(--c-line); padding: 20rpx 28rpx calc(20rpx + env(safe-area-inset-bottom)); }
 
 /* ---- Text input field (cart, manage-address) ---- */
-.field { background: #fff; border: 1rpx solid var(--c-line); border-radius: 14rpx; min-height: 80rpx; padding: 0 20rpx; font-size: 26rpx; box-sizing: border-box; }
+.field { display: block; width: 100%; background: #fff; border: 1rpx solid var(--c-line); border-radius: 14rpx; min-height: 80rpx; padding: 0 20rpx; font-size: 26rpx; box-sizing: border-box; }
 
 /* ---- Address type badge (cart, manage-address) ---- */
 .addr-type-badge { background: var(--c-primary-50); border-radius: 10rpx; padding: 6rpx 14rpx; }
