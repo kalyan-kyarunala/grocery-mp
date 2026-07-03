@@ -68,6 +68,7 @@ Page({
   },
   goManageAddress() { my.navigateTo({ url: '/pages/manage-address/index' }); },
   startShopping() { my.navigateBack();},
+  shopNow() { my.navigateTo({ url: '/pages/home/index' }); },
   checkout() { my.navigateTo({ url: '/pages/checkout/index?mode=' + this.data.mode }); },
   back() { my.navigateBack(); }
 });

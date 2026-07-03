@@ -49,5 +49,5 @@
     </view>
   </view>
 
-  <tab-bar active="home" />
+  <tab-bar active="home" cartCount="{{cartCount}}" />
 </view>

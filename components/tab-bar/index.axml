@@ -10,6 +10,7 @@
   <view class="tabbar__item tabbar__item--raised tap" onTap="go" data-key="cart">
     <view class="tabbar__fab">
       <fa-icon name="cart" size="40" color="#ffffff" />
+      <view class="tabbar__badge" a:if="{{cartCount > 0}}"><text class="tabbar__badge__t">{{cartCount > 99 ? '99+' : cartCount}}</text></view>
     </view>
   </view>
   <view class="tabbar__item tap" onTap="go" data-key="orders">

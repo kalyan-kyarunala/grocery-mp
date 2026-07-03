@@ -1,6 +1,6 @@
 var ROUTES = { home: '/pages/home/index', cart: '/pages/cart/index' };
 Component({
-  props: { active: 'home' },
+  props: { active: 'home', cartCount: 0 },
   methods: {
     go(e) {
       var key = e.target.dataset.key;

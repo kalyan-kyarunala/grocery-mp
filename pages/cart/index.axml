@@ -128,7 +128,7 @@
       <view class="empty__icon"><fa-icon name="cart" size="88" color="#1A56DB" /></view>
       <text class="empty__title">Your Cart is Empty!</text>
       <text class="empty__sub">Looks like you have not added anything to your cart yet.</text>
-      <view class="mt-l"><ds-button text="Start Shopping" type="primary" block="{{true}}" onTap="startShopping" /></view>
+      <view class="mt-l"><ds-button text="Start Shopping" type="primary" block="{{true}}" onTap="shopNow" /></view>
     </view>
   </view>
 
