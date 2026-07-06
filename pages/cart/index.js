@@ -70,5 +70,7 @@ Page({
   startShopping() { my.navigateBack();},
   shopNow() { my.navigateTo({ url: '/pages/home/index' }); },
   checkout() { my.navigateTo({ url: '/pages/checkout/index?mode=' + this.data.mode }); },
-  back() { my.navigateBack(); }
+  back() {
+    if (getCurrentPages().length > 1) { my.navigateBack(); } else { my.reLaunch({ url: '/pages/home/index' }); }
+  }
 });
