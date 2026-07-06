@@ -1,6 +1,6 @@
 .ds-btn {
   display: flex; align-items: center; justify-content: center; gap: 14rpx;
-  min-height: var(--tap); padding: 0 28rpx;
+  min-height: var(--tap); padding: 0 28rpx; box-sizing: border-box;
   border-radius: 22rpx; font-size: 28rpx; font-weight: 600;
 }
 .ds-btn--block { width: 100%; }

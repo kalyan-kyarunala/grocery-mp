@@ -128,6 +128,13 @@ page {
 /* ---- Text input field (cart, manage-address) ---- */
 .field { display: block; width: 100%; background: #fff; border: 1rpx solid var(--c-line); border-radius: 14rpx; min-height: 80rpx; padding: 0 20rpx; font-size: 26rpx; box-sizing: border-box; }
 
+/* ---- Bottom sheet (manage-address, store filter) ---- */
+.sheet-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 200; display: flex; align-items: flex-end; }
+.sheet { width: 100%; max-height: 88vh; background: var(--c-bg); border-radius: 28rpx 28rpx 0 0; overflow: hidden; display: flex; flex-direction: column; }
+.sheet__header { display: flex; align-items: center; justify-content: space-between; padding: 24rpx 28rpx; background: #fff; border-bottom: 1rpx solid var(--c-line); }
+.sheet__title { font-size: 30rpx; font-weight: 700; color: var(--c-text); }
+.sheet__body { flex: 1; min-height: 0; padding: 24rpx 28rpx calc(24rpx + env(safe-area-inset-bottom)); box-sizing: border-box; }
+
 /* ---- Address type badge (cart, manage-address) ---- */
 .addr-type-badge { background: var(--c-primary-50); border-radius: 10rpx; padding: 6rpx 14rpx; }
 .addr-type-badge__t { font-size: 20rpx; font-weight: 700; color: var(--c-primary); letter-spacing: 1rpx; }

@@ -13,7 +13,8 @@ var GLYPHS = {
   basket: '\uf291', dashboard: '\uf0e4', xmark: '\uf00d', 'circle-xmark': '\uf057',
   'location-crosshairs': '\uf601', certificate: '\uf0a3',
   'rotate-left': '\uf2ea', shield: '\uf132', image: '\uf03e',
-  leaf: '\uf06c', snowflake: '\uf2dc', gift: '\uf06b', 'trash-can': '\uf2ed'
+  leaf: '\uf06c', snowflake: '\uf2dc', gift: '\uf06b', 'trash-can': '\uf2ed',
+  sliders: '\uf1de'
 };
 Component({
   props: { name: '', size: 34, color: '#1A1A1A' },

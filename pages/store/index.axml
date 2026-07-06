@@ -19,20 +19,74 @@
     </view>
   </view>
 
-  <scroll-view scroll-x class="cats">
+  <scroll-view scroll-x class="cats" onScroll="onCatsScroll" onScrollEnd="onCatsScrollEnd">
+    <view class="filterbtn tap" onTap="openFilter">
+      <fa-icon name="sliders" size="24" color="{{filtersActive ? '#16A34A' : '#1A56DB'}}" />
+      <text class="filterbtn__t {{filtersActive ? 'filterbtn__t--active' : ''}}">Filter</text>
+    </view>
     <view a:for="{{categories}}" a:key="*this"
-          class="chip cat-chip {{activeCat === item ? 'active' : ''}}"
+          class="chip cat-chip {{!filtersActive && activeCat === item ? 'active' : ''}}"
           data-c="{{item}}" onTap="setCat">{{item}}</view>
   </scroll-view>
+  <view class="cats-track">
+    <view class="cats-thumb {{catsScrolling ? 'cats-thumb--visible' : ''}}" style="margin-left:{{catsThumbLeft}}rpx;"></view>
+  </view>
 
   <view class="grid pad-x">
     <view class="grid__cell" a:for="{{products}}" a:key="id">
       <product-card item="{{item}}" onOpen="openProduct" onAdd="addToCart" onChange="changeQty" />
     </view>
   </view>
+  <view a:if="{{products.length === 0}}" class="filter-empty">
+    <fa-icon name="search" size="56" color="#C7D0DE" />
+    <text class="strong mt-s">No products match your filters</text>
+    <text class="faint">Try widening the price range or clearing the search</text>
+  </view>
 
   <view class="cartbar" a:if="{{cartCount > 0}}" onTap="goCart">
     <view class="row gap-s"><fa-icon name="cart" size="34" color="#fff" /><text class="cartbar__t">{{cartCount}} items</text></view>
     <view class="row gap-s"><text class="cartbar__t">{{cartTotalText}}</text><fa-icon name="chevron-right" size="26" color="#fff" /></view>
+  </view>
+
+  <!-- Filter sheet -->
+  <view class="sheet-overlay" a:if="{{showFilter}}" onTap="closeFilter">
+    <view class="sheet" catchTap="noop">
+      <view class="sheet__header">
+        <text class="sheet__title">Filter</text>
+        <view class="row gap-m">
+          <text class="resetbtn" onTap="resetFilters">Reset</text>
+          <view class="tap" onTap="closeFilter"><fa-icon name="xmark" size="28" color="#6B7280" /></view>
+        </view>
+      </view>
+      <scroll-view scroll-y class="sheet__body">
+        <text class="filter__label">By Title</text>
+        <input class="field mt-xs" placeholder="Search for product title" value="{{filterTitle}}" onInput="onFilterTitleInput" />
+        <view class="mt-s filter-apply {{titleJustApplied ? 'filter-apply--done' : ''}}"><ds-button text="Filter" type="secondary" block="{{true}}" onTap="applyTitleFilter" /></view>
+
+        <view class="divider mt-l"></view>
+
+        <text class="filter__label mt-l">By Price</text>
+        <view class="mt-m">
+          <view class="row between"><text class="muted">Min</text><text class="strong">RM {{filterMinPrice}}</text></view>
+          <slider class="mt-xs" min="{{priceBounds.min}}" max="{{priceBounds.max}}" step="1" value="{{filterMinPrice}}" activeColor="#1A56DB" backgroundColor="#E5E7EB" block-size="22" onChange="onMinPriceChange" />
+          <view class="row between mt-m"><text class="muted">Max</text><text class="strong">RM {{filterMaxPrice}}</text></view>
+          <slider class="mt-xs" min="{{priceBounds.min}}" max="{{priceBounds.max}}" step="1" value="{{filterMaxPrice}}" activeColor="#1A56DB" backgroundColor="#E5E7EB" block-size="22" onChange="onMaxPriceChange" />
+        </view>
+        <text class="muted mt-s">Price :  <text class="strong"> RM {{filterMinPrice}} — RM {{filterMaxPrice}}</text></text>
+        <view class="mt-s filter-apply {{priceJustApplied ? 'filter-apply--done' : ''}}"><ds-button text="Filter" type="secondary" block="{{true}}" onTap="applyPriceFilter" /></view>
+
+        <view class="divider mt-l"></view>
+
+        <text class="filter__label mt-l">By Available</text>
+        <view class="row gap-s mt-m tap" onTap="toggleHideOOS">
+          <view class="radio {{hideOutOfStock ? 'radio--on' : ''}}">
+            <fa-icon a:if="{{hideOutOfStock}}" name="check" size="22" color="#fff" />
+          </view>
+          <text class="body">Hide Out of Stock</text>
+        </view>
+
+        <view style="height:40rpx"></view>
+      </scroll-view>
+    </view>
   </view>
 </view>
