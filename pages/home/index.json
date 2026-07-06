@@ -4,6 +4,7 @@
     "fa-icon": "/components/fa-icon/index",
     "outlet-card": "/components/outlet-card/index",
     "promo-banner": "/components/promo-banner/index",
-    "tab-bar": "/components/tab-bar/index"
+    "tab-bar": "/components/tab-bar/index",
+    "ds-button": "/components/ds-button/index"
   }
 }

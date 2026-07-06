@@ -6,55 +6,24 @@
 }
 .meta-pill { background: var(--c-bg); border-radius: var(--radius-pill); padding: 8rpx 18rpx; }
 .meta-pill__t { font-size: 26rpx; color: var(--c-muted); font-weight: 600; }
-.cats { white-space: nowrap; padding: 24rpx 28rpx 12rpx; }
+.cats { white-space: nowrap; padding: 4rpx 28rpx; }
+.cats .chip { padding: 10rpx 24rpx; }
+.cats .filterbtn.tap { padding: 4rpx 0; }
 .cat-chip { display: inline-block; margin-right: 14rpx; }
-.filterbtn { display: inline-flex; align-items: center; gap: 8rpx; vertical-align: middle; margin-right: 20rpx; padding: 14rpx 0; }
-.filterbtn__t { font-size: 24rpx; color: var(--c-primary); font-weight: 600; }
-.filterbtn__t--active { color: var(--c-accent); }
 
 /* Custom scroll indicator for the category row (native scroll-view doesn't
    expose a controllable scrollbar, so this tracks scroll position by hand).
    Fixed-size track/thumb, positioned via margin-left as scroll progresses.
    Hidden by default; fades in only while actively scrolling. */
-.cats-track { width: 120rpx; height: 8rpx; margin: 0 auto 16rpx; }
+.cats-track { width: 120rpx; height: 8rpx; margin: 0 auto 4rpx; }
+.grid { margin-top: 8rpx; }
 .cats-thumb {
   width: 40rpx; height: 100%; background: rgba(26,26,26,.55); border-radius: 8rpx;
   opacity: 0; transition: opacity .25s ease, margin-left .05s linear;
 }
 .cats-thumb--visible { opacity: 1; }
 
-/* Filter sheet */
-.filter__label { font-size: 26rpx; font-weight: 700; color: var(--c-text); text-decoration: underline; text-underline-offset: 6rpx; }
+/* Filter sheet — black border look requested specifically for this page
+   (generic filter-sheet styles live in the global stylesheet). */
 .sheet__body .field { border-color: #000; }
 .filter-apply .ds-btn--secondary { border-color: #000; }
-/* The block="{{true}}" prop only makes the *inner* .ds-btn stretch; the
-   <ds-button> custom element's own outer node still needs width:100% or it
-   shrinks to fit its content instead of the sheet's full width. */
-.filter-apply ds-button { display: block; width: 100%; box-sizing: border-box; }
-.resetbtn {
-  font-size: 22rpx; font-weight: 700; color: var(--c-primary);
-  background: var(--c-primary-50); border-radius: var(--radius-pill); padding: 10rpx 20rpx;
-}
-.radio {
-  width: 40rpx; height: 40rpx; border-radius: 50%; border: 1rpx solid var(--c-line); background: #fff; flex: none;
-  display: flex; align-items: center; justify-content: center;
-}
-.radio--on { border-color: var(--c-accent); background: var(--c-accent); }
-
-.filter-empty { display: flex; flex-direction: column; align-items: center; padding: 100rpx 40rpx; text-align: center; }
-
-/* Immediate green feedback while hovering/pressing the Filter buttons
-   (title/price sections) — instant, but reverts as soon as the pointer
-   leaves or lifts. */
-.filter-apply .ds-btn--secondary:hover,
-.filter-apply .ds-btn--secondary:active {
-  background: var(--c-accent-700); color: #fff; border-color: var(--c-accent-700);
-}
-
-/* Dark green "applied" feedback on the Filter buttons (title/price sections).
-   Driven by data state (not :active) so it stays visible for the full
-   closeFilterDelayed() pause, not just while the finger is on the screen. */
-.filter-apply--done .ds-btn--secondary {
-  background: var(--c-accent-700); color: #fff; border-color: var(--c-accent-700);
-  transition: background .15s ease, color .15s ease;
-}

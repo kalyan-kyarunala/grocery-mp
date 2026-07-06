@@ -135,6 +135,42 @@ page {
 .sheet__title { font-size: 30rpx; font-weight: 700; color: var(--c-text); }
 .sheet__body { flex: 1; min-height: 0; padding: 24rpx 28rpx calc(24rpx + env(safe-area-inset-bottom)); box-sizing: border-box; }
 
+/* ---- Filter button + sheet contents (store, home) ---- */
+/* .filterbtn also carries the shared .tap class (for the 44px touch target),
+   whose display:flex would otherwise win the cascade tie and break this out
+   of the inline chip row — .filterbtn.tap raises specificity so it always wins. */
+.filterbtn.tap { display: inline-flex; align-items: center; gap: 8rpx; vertical-align: middle; margin-right: 20rpx; padding: 14rpx 0; }
+.filterbtn__t { font-size: 24rpx; color: var(--c-primary); font-weight: 600; }
+.filterbtn__t--active { color: var(--c-accent); }
+.filter__label { font-size: 26rpx; font-weight: 700; color: var(--c-text); text-decoration: underline; text-underline-offset: 6rpx; }
+.resetbtn {
+  font-size: 22rpx; font-weight: 700; color: var(--c-primary);
+  background: var(--c-primary-50); border-radius: var(--radius-pill); padding: 10rpx 20rpx;
+}
+.radio {
+  width: 40rpx; height: 40rpx; border-radius: 50%; border: 1rpx solid var(--c-line); background: #fff; flex: none;
+  display: flex; align-items: center; justify-content: center;
+}
+.radio--on { border-color: var(--c-accent); background: var(--c-accent); }
+.filter-empty { display: flex; flex-direction: column; align-items: center; padding: 100rpx 40rpx; text-align: center; }
+/* The block="{{true}}" prop only makes the *inner* .ds-btn stretch; the
+   <ds-button> custom element's own outer node still needs width:100% or it
+   shrinks to fit its content instead of the sheet's full width. */
+.filter-apply ds-button { display: block; width: 100%; box-sizing: border-box; }
+/* Immediate green feedback while hovering/pressing a Filter apply button —
+   instant, but reverts as soon as the pointer leaves or lifts. */
+.filter-apply .ds-btn--secondary:hover,
+.filter-apply .ds-btn--secondary:active {
+  background: var(--c-accent-700); color: #fff; border-color: var(--c-accent-700);
+}
+/* Dark green "applied" feedback, driven by data state (not :active) so it
+   stays visible for the full closeFilterDelayed() pause, not just while the
+   finger is on the screen. */
+.filter-apply--done .ds-btn--secondary {
+  background: var(--c-accent-700); color: #fff; border-color: var(--c-accent-700);
+  transition: background .15s ease, color .15s ease;
+}
+
 /* ---- Address type badge (cart, manage-address) ---- */
 .addr-type-badge { background: var(--c-primary-50); border-radius: 10rpx; padding: 6rpx 14rpx; }
 .addr-type-badge__t { font-size: 20rpx; font-weight: 700; color: var(--c-primary); letter-spacing: 1rpx; }

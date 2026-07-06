@@ -30,6 +30,10 @@
 
   <!-- Filter chips -->
   <scroll-view scroll-x class="chips">
+    <view class="filterbtn tap" onTap="openFilter">
+      <fa-icon name="sliders" size="24" color="{{filtersActive ? '#16A34A' : '#1A56DB'}}" />
+      <text class="filterbtn__t {{filtersActive ? 'filterbtn__t--active' : ''}}">Filter</text>
+    </view>
     <view a:for="{{filters}}" a:key="*this"
           class="chip {{activeFilter === item ? 'active' : ''}}"
           data-f="{{item}}" onTap="setFilter">{{item}}</view>
@@ -47,7 +51,51 @@
     <view class="col gap-l mt-m">
       <outlet-card a:for="{{outlets}}" a:key="id" outlet="{{item}}" onOpen="openStore" />
     </view>
+    <view a:if="{{outlets.length === 0}}" class="filter-empty">
+      <fa-icon name="search" size="56" color="#C7D0DE" />
+      <text class="strong mt-s">No outlets match your filters</text>
+      <text class="faint">Try widening the distance range or clearing the search</text>
+    </view>
   </view>
 
   <tab-bar active="home" cartCount="{{cartCount}}" />
+
+  <!-- Filter sheet -->
+  <view class="sheet-overlay" a:if="{{showFilter}}" onTap="closeFilter">
+    <view class="sheet" catchTap="noop">
+      <view class="sheet__header">
+        <text class="sheet__title">Filter</text>
+        <view class="row gap-m">
+          <text class="resetbtn" onTap="resetOutletFilters">Reset</text>
+          <view class="tap" onTap="closeFilter"><fa-icon name="xmark" size="28" color="#6B7280" /></view>
+        </view>
+      </view>
+      <scroll-view scroll-y class="sheet__body">
+        <text class="filter__label">By Name</text>
+        <input class="field mt-xs" placeholder="Search for outlet name" value="{{filterName}}" onInput="onFilterNameInput" />
+        <view class="mt-s filter-apply {{nameJustApplied ? 'filter-apply--done' : ''}}"><ds-button text="Filter" type="secondary" block="{{true}}" onTap="applyNameFilter" /></view>
+
+        <view class="divider mt-l"></view>
+
+        <text class="filter__label mt-l">By Distance</text>
+        <view class="mt-m">
+          <view class="row between"><text class="muted">Up to</text><text class="strong">{{filterMaxDistanceText}} km</text></view>
+          <slider class="mt-xs" min="{{distanceBounds.min}}" max="{{distanceBounds.max}}" step="1" value="{{filterMaxDistance}}" activeColor="#1A56DB" backgroundColor="#E5E7EB" block-size="22" onChange="onMaxDistanceChange" />
+        </view>
+        <view class="mt-s filter-apply {{distanceJustApplied ? 'filter-apply--done' : ''}}"><ds-button text="Filter" type="secondary" block="{{true}}" onTap="applyDistanceFilter" /></view>
+
+        <view class="divider mt-l"></view>
+
+        <text class="filter__label mt-l">By Available</text>
+        <view class="row gap-s mt-m tap" onTap="toggleFreeDelivery">
+          <view class="radio {{freeDeliveryOnly ? 'radio--on' : ''}}">
+            <fa-icon a:if="{{freeDeliveryOnly}}" name="check" size="22" color="#fff" />
+          </view>
+          <text class="body">Free Delivery Only</text>
+        </view>
+
+        <view style="height:40rpx"></view>
+      </scroll-view>
+    </view>
+  </view>
 </view>

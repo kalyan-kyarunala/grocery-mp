@@ -14,12 +14,13 @@
 .searchbar { display: flex; align-items: center; gap: 14rpx; background: #fff; border-radius: 18rpx; min-height: var(--tap); padding: 0 24rpx; box-shadow: 0 8rpx 20rpx rgba(0,0,0,.15); }
 .chips {
   white-space: nowrap;
-  padding: 20rpx 28rpx 20rpx;
+  padding: 4rpx 28rpx;
   background: #fff;
   border-bottom: 1rpx solid var(--c-line);
   box-shadow: 0 4rpx 12rpx rgba(0,0,0,.06);
 }
-.chips .chip { display: inline-block; margin-right: 14rpx; }
+.chips .chip { display: inline-block; margin-right: 14rpx; padding: 10rpx 24rpx; }
+.chips .filterbtn.tap { padding: 4rpx 0; }
 
 .seeall { padding: 8rpx 0 8rpx 16rpx; margin-right: -16rpx; }
 
