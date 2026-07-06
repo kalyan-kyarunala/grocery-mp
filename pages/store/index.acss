@@ -16,7 +16,7 @@
    Fixed-size track/thumb, positioned via margin-left as scroll progresses.
    Hidden by default; fades in only while actively scrolling. */
 .cats-track { width: 120rpx; height: 8rpx; margin: 0 auto 4rpx; }
-.grid { margin-top: 8rpx; }
+.grid { margin-top: 0rpx; }
 .cats-thumb {
   width: 40rpx; height: 100%; background: rgba(26,26,26,.55); border-radius: 8rpx;
   opacity: 0; transition: opacity .25s ease, margin-left .05s linear;
