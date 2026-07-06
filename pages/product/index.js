@@ -47,16 +47,44 @@ var DESCS = {
   wraps:               'Soft, pliable wheat tortilla wraps — perfect for burritos, fajitas, and packed lunches.'
 };
 
+var NUTRITION_BY_CAT = {
+  Fruits: 'Naturally rich in vitamins A & C, dietary fibre, and antioxidants. Low in fat and sodium.',
+  Veggies: 'A good source of vitamins, minerals, and dietary fibre. Naturally low in calories and fat.',
+  Snacks: 'Provides carbohydrates and fats for quick energy — best enjoyed in moderation.',
+  Cooking: 'Nutritional value varies by use — see packaging after delivery for full details.',
+  Bakery: 'A source of carbohydrates for energy, best enjoyed as part of a balanced diet.'
+};
+var STORAGE_BY_CAT = {
+  Fruits: 'Keep refrigerated at 2–8°C. Best consumed within 5–7 days of delivery for peak freshness.',
+  Veggies: 'Store in the refrigerator crisper drawer. Use within 5–7 days for best quality.',
+  Snacks: 'Store in a cool, dry place away from direct sunlight. Reseal the pack after opening.',
+  Cooking: 'Store in a cool, dry pantry away from heat and moisture. Keep tightly sealed.',
+  Bakery: 'Best enjoyed fresh within 2–3 days. Store in an airtight container at room temperature.'
+};
+var SHIPPING_INFO = 'Free delivery on orders over RM50. Standard delivery arrives in 25–35 minutes. Not fully satisfied? Items can be returned within 24 hours of delivery for a full refund.';
+
 Page({
-  data: { product: {}, qty: 1, totalText: 'RM 0.00', faved: false },
+  data: { product: {}, qty: 1, totalText: 'RM 0.00', faved: false, openSection: '', shippingInfo: SHIPPING_INFO },
   onLoad(q) {
     var p = Object.assign({}, app.globalData.selectedProduct || {});
     if (!p.id) { p = { id: q.id, name: q.id, price: 0, unit: '', bg: '#F5F5F5' }; }
     p.priceText = fmt.rm(p.price || 0);
     p.stock = 20 + Math.floor(Math.random() * 40);
     p.desc = DESCS[p.id] || (p.name + ' — fresh and high quality, delivered straight to your door.');
+    p.details = [
+      { label: 'Category', value: p.category || 'Groceries' },
+      { label: 'Unit', value: p.unit || '—' },
+      { label: 'Availability', value: p.stock + ' units in stock' },
+      { label: 'Sourced from', value: 'Trusted local suppliers' }
+    ];
+    p.nutrition = NUTRITION_BY_CAT[p.category] || 'Nutritional information varies by product — see packaging after delivery for full details.';
+    p.storage = STORAGE_BY_CAT[p.category] || 'Store in a cool, dry place and check packaging for any specific storage instructions.';
     this.setData({ product: p });
     this.recalc(1);
+  },
+  toggleSection(e) {
+    var key = e.target.dataset.key;
+    this.setData({ openSection: this.data.openSection === key ? '' : key });
   },
   setQty(v) { this.setData({ qty: v }); this.recalc(v); },
   recalc(qty) { this.setData({ totalText: fmt.rm((this.data.product.price || 0) * qty) }); },

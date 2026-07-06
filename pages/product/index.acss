@@ -38,3 +38,17 @@
 .qty-row { display: flex; align-items: center; justify-content: space-between; background: #F9FAFB; border-radius: 20rpx; padding: 24rpx; }
 .qty-title { font-size: 34rpx; font-weight: 700; color: var(--c-text); }
 .qty-sub { font-size: 24rpx; color: #6B7280; margin-top: 6rpx; display: block; }
+
+/* Accordion sections — one continuous dark box, rows divided by hairlines */
+.acc { background: #1A1A1A; border-radius: 24rpx; overflow: hidden; margin-top: 32rpx; margin-bottom: 32rpx;}
+.acc-item + .acc-item { border-top: 1rpx solid #2A2A2A; }
+.acc__row { display: flex; align-items: center; justify-content: space-between; padding: 32rpx; box-sizing: border-box; }
+.acc__row:active { background: #222; }
+.acc__title { font-size: 24rpx; font-weight: 600; letter-spacing: 2rpx; color: #fff; }
+.acc__toggle { font-size: 36rpx; font-weight: 300; color: #999; width: 40rpx; text-align: center; line-height: 1; }
+.acc__toggle--active { color: var(--c-primary); }
+.acc__panel { padding: 0 32rpx 32rpx; }
+.acc__detail { padding: 8rpx 0; }
+.acc__detail .muted { color: #9CA3AF; }
+.acc__detail .strong { color: #fff; }
+.acc__text { font-size: 24rpx; line-height: 1.7; color: #ccc; }

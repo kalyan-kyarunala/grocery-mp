@@ -71,6 +71,44 @@
       <qty-stepper value="{{qty}}" min="1" onChange="setQty" />
     </view>
 
+    <!-- Accordion sections -->
+    <view class="acc">
+      <view class="acc-item">
+        <view class="acc__row tap" data-key="details" onTap="toggleSection">
+          <text class="acc__title">PRODUCT DETAILS</text>
+          <text class="acc__toggle {{openSection === 'details' ? 'acc__toggle--active' : ''}}">{{openSection === 'details' ? '−' : '+'}}</text>
+        </view>
+        <view class="acc__panel" a:if="{{openSection === 'details'}}">
+          <view class="acc__detail row between" a:for="{{product.details}}" a:key="label">
+            <text class="muted">{{item.label}}</text>
+            <text class="strong">{{item.value}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="acc-item">
+        <view class="acc__row tap" data-key="nutrition" onTap="toggleSection">
+          <text class="acc__title">NUTRITION INFO</text>
+          <text class="acc__toggle {{openSection === 'nutrition' ? 'acc__toggle--active' : ''}}">{{openSection === 'nutrition' ? '−' : '+'}}</text>
+        </view>
+        <view class="acc__panel" a:if="{{openSection === 'nutrition'}}">
+          <text class="acc__text">{{product.nutrition}}</text>
+        </view>
+      </view>
+
+      <view class="acc-item">
+        <view class="acc__row tap" data-key="storage" onTap="toggleSection">
+          <text class="acc__title">STORAGE TIPS</text>
+          <text class="acc__toggle {{openSection === 'storage' ? 'acc__toggle--active' : ''}}">{{openSection === 'storage' ? '−' : '+'}}</text>
+        </view>
+        <view class="acc__panel" a:if="{{openSection === 'storage'}}">
+          <text class="acc__text">{{product.storage}}</text>
+        </view>
+      </view>
+
+
+    </view>
+
   </view>
 
   <view class="footerbar">

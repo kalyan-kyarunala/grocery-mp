@@ -19,5 +19,9 @@ Component({
   props: { name: '', size: 34, color: '#1A1A1A' },
   data: { glyph: '' },
   didMount() { this.setData({ glyph: GLYPHS[this.props.name] || '' }); },
+  didUpdate() {
+    var glyph = GLYPHS[this.props.name] || '';
+    if (glyph !== this.data.glyph) { this.setData({ glyph: glyph }); }
+  },
   deriveDataFromProps(next) { this.setData({ glyph: GLYPHS[next.name] || '' }); }
 });
