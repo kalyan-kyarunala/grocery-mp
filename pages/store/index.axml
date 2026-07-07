@@ -51,42 +51,86 @@
   <!-- Filter sheet -->
   <view class="sheet-overlay" a:if="{{showFilter}}" onTap="closeFilter">
     <view class="sheet" catchTap="noop">
+
+      <view class="sheet__grab"></view>
+
       <view class="sheet__header">
-        <text class="sheet__title">Filter</text>
+        <view class="row gap-s">
+          <text class="sheet__title">Filter</text>
+          <text a:if="{{activeFilterCount > 0}}" class="filter-badge">{{activeFilterCount}} active</text>
+        </view>
         <view class="row gap-m">
           <text class="resetbtn" onTap="resetFilters">Reset</text>
-          <view class="tap" onTap="closeFilter"><fa-icon name="xmark" size="28" color="#6B7280" /></view>
+          <view class="closebtn tap" onTap="closeFilter"><fa-icon name="xmark" size="24" color="#6B7280" /></view>
         </view>
       </view>
+
       <scroll-view scroll-y class="sheet__body">
-        <text class="filter__label">By Title</text>
-        <input class="field mt-xs" placeholder="Search for product title" value="{{filterTitle}}" onInput="onFilterTitleInput" />
-        <view class="mt-s filter-apply {{titleJustApplied ? 'filter-apply--done' : ''}}"><ds-button text="Filter" type="secondary" block="{{true}}" onTap="applyTitleFilter" /></view>
 
-        <view class="divider mt-l"></view>
-
-        <text class="filter__label mt-l">By Price</text>
-        <view class="mt-m">
-          <view class="row between"><text class="muted">Min</text><text class="strong">RM {{filterMinPrice}}</text></view>
-          <slider class="mt-xs" min="{{priceBounds.min}}" max="{{priceBounds.max}}" step="1" value="{{filterMinPrice}}" activeColor="#1A56DB" backgroundColor="#E5E7EB" block-size="22" onChange="onMinPriceChange" />
-          <view class="row between mt-m"><text class="muted">Max</text><text class="strong">RM {{filterMaxPrice}}</text></view>
-          <slider class="mt-xs" min="{{priceBounds.min}}" max="{{priceBounds.max}}" step="1" value="{{filterMaxPrice}}" activeColor="#1A56DB" backgroundColor="#E5E7EB" block-size="22" onChange="onMaxPriceChange" />
+        <!-- By Title -->
+        <view class="row gap-s filter__head">
+          <fa-icon name="search" size="26" color="#1A56DB" />
+          <text class="filter__label" style="margin:0">By Title</text>
         </view>
-        <text class="muted mt-s">Price :  <text class="strong"> RM {{filterMinPrice}} — RM {{filterMaxPrice}}</text></text>
-        <view class="mt-s filter-apply {{priceJustApplied ? 'filter-apply--done' : ''}}"><ds-button text="Filter" type="secondary" block="{{true}}" onTap="applyPriceFilter" /></view>
-
-        <view class="divider mt-l"></view>
-
-        <text class="filter__label mt-l">By Available</text>
-        <view class="row gap-s mt-m tap" onTap="toggleHideOOS">
-          <view class="radio {{hideOutOfStock ? 'radio--on' : ''}}">
-            <fa-icon a:if="{{hideOutOfStock}}" name="check" size="22" color="#fff" />
+        <view class="searchbox mt-xs">
+          <fa-icon name="search" size="28" color="#9AA0A6" />
+          <input class="searchbox__input" placeholder="Search for product title" value="{{filterTitle}}" onInput="onFilterTitleInput" />
+          <view a:if="{{filterTitle}}" class="searchbox__clear tap" onTap="clearTitle">
+            <fa-icon name="xmark" size="22" color="#9AA0A6" />
           </view>
-          <text class="body">Hide Out of Stock</text>
         </view>
 
-        <view style="height:40rpx"></view>
+        <view class="divider mt-l"></view>
+
+        <!-- By Price -->
+        <view class="row between mt-l">
+          <view class="row gap-s" style="margin:0">
+            <fa-icon name="tag" size="26" color="#1A56DB" />
+            <text class="filter__label" style="margin:0">By Price</text>
+          </view>
+          <text class="faint">RM {{priceBounds.min}} – RM {{priceBounds.max}}</text>
+        </view>
+
+        <view class="row gap-m mt-s">
+          <view class="pricecard">
+            <text class="pricecard__label">Min</text>
+            <text class="pricecard__value">RM {{filterMinPrice}}</text>
+          </view>
+          <view class="pricecard">
+            <text class="pricecard__label">Max</text>
+            <text class="pricecard__value">RM {{filterMaxPrice}}</text>
+          </view>
+        </view>
+
+        <range-slider class="mt-m" min="{{priceBounds.min}}" max="{{priceBounds.max}}"
+                       low="{{filterMinPrice}}" high="{{filterMaxPrice}}" onChange="onPriceRangeChange" />
+
+        <view class="presets mt-m">
+          <view class="preset {{activePreset === item.key ? 'preset--active' : ''}}"
+                a:for="{{pricePresets}}" a:key="key"
+                data-key="{{item.key}}" data-min="{{item.min}}" data-max="{{item.max}}"
+                onTap="setPricePreset">{{item.label}}</view>
+        </view>
+
+        <view class="divider mt-l"></view>
+
+        <!-- Availability -->
+        <view class="stockrow mt-l">
+          <view class="col">
+            <text class="stockrow__title">Hide Out of Stock</text>
+            <text class="stockrow__sub">Only show available items</text>
+          </view>
+          <switch checked="{{hideOutOfStock}}" color="#1A56DB" onChange="onStockSwitchChange" />
+        </view>
+
+        <view style="height:24rpx"></view>
       </scroll-view>
+
+      <!-- Sticky single CTA -->
+      <view class="sheet__footer">
+        <ds-button text="Show {{resultCount}} results" type="primary" block="{{true}}" onTap="closeFilter" />
+      </view>
+
     </view>
   </view>
 </view>

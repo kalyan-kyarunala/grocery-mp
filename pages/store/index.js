@@ -23,8 +23,10 @@ Page({
     filterMaxPrice: 0,
     hideOutOfStock: false,
     filtersActive: false,
-    titleJustApplied: false,
-    priceJustApplied: false,
+    activeFilterCount: 0,
+    pricePresets: [],
+    activePreset: 'any',
+    resultCount: 0,
     catsThumbLeft: 0,
     catsScrolling: false
   },
@@ -43,6 +45,7 @@ Page({
       min: Math.floor(Math.min.apply(null, allPrices)),
       max: Math.ceil(Math.max.apply(null, allPrices))
     };
+    this._buildPricePresets();
 
     this.loadCategory(this.data.activeCat);
   },
@@ -86,54 +89,63 @@ Page({
       filterTitle: '',
       filterMinPrice: bounds.min,
       filterMaxPrice: bounds.max,
-      hideOutOfStock: false
+      hideOutOfStock: false,
+      activePreset: 'any'
     });
     this.applyFilters();
   },
   openFilter() { this.setData({ showFilter: true }); },
   closeFilter() { this.setData({ showFilter: false }); },
-  closeFilterDelayed() {
-    var self = this;
-    clearTimeout(this._closeFilterTimer);
-    this._closeFilterTimer = setTimeout(function () {
-      self.setData({ showFilter: false, titleJustApplied: false, priceJustApplied: false });
-    }, 500);
-  },
   resetFilters() {
     var bounds = this._priceBounds;
     this.setData({
       filterTitle: '',
       filterMinPrice: bounds.min,
       filterMaxPrice: bounds.max,
-      hideOutOfStock: false
+      hideOutOfStock: false,
+      activePreset: 'any'
     });
     this.applyFilters();
-    this.closeFilterDelayed();
   },
   noop() {},
-  onFilterTitleInput(e) { this.setData({ filterTitle: e.detail.value }); },
-  onMinPriceChange(e) {
-    var v = Math.min(e.detail.value, this.data.filterMaxPrice);
-    this.setData({ filterMinPrice: v });
-  },
-  onMaxPriceChange(e) {
-    var v = Math.max(e.detail.value, this.data.filterMinPrice);
-    this.setData({ filterMaxPrice: v });
-  },
-  toggleHideOOS() {
-    this.setData({ hideOutOfStock: !this.data.hideOutOfStock });
+  onFilterTitleInput(e) {
+    this.setData({ filterTitle: e.detail.value });
     this.applyFilters();
-    this.closeFilterDelayed();
   },
-  applyTitleFilter() {
+  clearTitle() {
+    this.setData({ filterTitle: '' });
     this.applyFilters();
-    this.setData({ titleJustApplied: true });
-    this.closeFilterDelayed();
   },
-  applyPriceFilter() {
+  onPriceRangeChange(low, high) {
+    this.setData({ filterMinPrice: low, filterMaxPrice: high, activePreset: '' });
     this.applyFilters();
-    this.setData({ priceJustApplied: true });
-    this.closeFilterDelayed();
+  },
+  setPricePreset(e) {
+    var d = e.currentTarget.dataset;
+    this.setData({
+      filterMinPrice: Number(d.min),
+      filterMaxPrice: Number(d.max),
+      activePreset: d.key
+    });
+    this.applyFilters();
+  },
+  onStockSwitchChange(e) {
+    this.setData({ hideOutOfStock: e.detail.value });
+    this.applyFilters();
+  },
+  _buildPricePresets() {
+    var b = this._priceBounds;
+    var span = b.max - b.min;
+    var t1 = Math.round(b.min + span / 3);
+    var t2 = Math.round(b.min + (2 * span) / 3);
+    this.setData({
+      pricePresets: [
+        { key: 'any', label: 'Any price', min: b.min, max: b.max },
+        { key: 'low', label: 'Under RM ' + t1, min: b.min, max: t1 },
+        { key: 'mid', label: 'RM ' + t1 + '–' + t2, min: t1, max: t2 },
+        { key: 'high', label: 'RM ' + t2 + '+', min: t2, max: b.max }
+      ]
+    });
   },
   applyFilters() {
     var title = (this.data.filterTitle || '').trim().toLowerCase();
@@ -141,7 +153,8 @@ Page({
     var max = this.data.filterMaxPrice;
     var hideOOS = this.data.hideOutOfStock;
     var bounds = this._priceBounds;
-    var filtersActive = !!title || min > bounds.min || max < bounds.max || hideOOS;
+    var activeFilterCount = (title ? 1 : 0) + ((min > bounds.min || max < bounds.max) ? 1 : 0) + (hideOOS ? 1 : 0);
+    var filtersActive = activeFilterCount > 0;
 
     // Once any filter is active, search every category instead of just the
     // one currently selected — the category tabs stop applying until the
@@ -153,7 +166,12 @@ Page({
       if (hideOOS && p.inStock === false) { return false; }
       return true;
     });
-    this.setData({ products: filtered, filtersActive: filtersActive });
+    this.setData({
+      products: filtered,
+      filtersActive: filtersActive,
+      activeFilterCount: activeFilterCount,
+      resultCount: filtered.length
+    });
     this.syncQty();
   },
   openProduct(item) {

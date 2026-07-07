@@ -1,0 +1,7 @@
+<view class="rs">
+  <view class="rs__track" id="track">
+    <view class="rs__fill" style="left:{{lowPct}}%; width:{{highPct - lowPct}}%;"></view>
+    <view class="rs__thumb" data-thumb="low" style="left:{{lowPct}}%;" onTouchMove="onThumbMove" catchTouchMove="true"></view>
+    <view class="rs__thumb" data-thumb="high" style="left:{{highPct}}%;" onTouchMove="onThumbMove" catchTouchMove="true"></view>
+  </view>
+</view>

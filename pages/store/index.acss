@@ -23,7 +23,42 @@
 }
 .cats-thumb--visible { opacity: 1; }
 
-/* Filter sheet — black border look requested specifically for this page
-   (generic filter-sheet styles live in the global stylesheet). */
-.sheet__body .field { border-color: #000; }
-.filter-apply .ds-btn--secondary { border-color: #000; }
+/* Filter sheet polish: drag handle, active-filter count badge, circular
+   close button, icon search box, price range slider + presets, native switch
+   stock row, sticky single-CTA footer. (generic .sheet-overlay/.sheet/
+   .sheet__header/.sheet__title/.sheet__body live in the global stylesheet) */
+.sheet__grab { width: 72rpx; height: 8rpx; border-radius: 8rpx; background: var(--c-line); margin: 16rpx auto 4rpx; }
+.filter__head { margin-top: 0; }
+.filter-badge {
+  font-size: 22rpx; font-weight: 600; color: var(--c-primary); background: var(--c-primary-50);
+  padding: 4rpx 16rpx; border-radius: var(--radius-pill);
+}
+.closebtn {
+  width: 60rpx; height: 60rpx; min-width: 0; min-height: 0; border-radius: 50%; background: var(--c-bg);
+}
+.searchbox {
+  display: flex; align-items: center; gap: 16rpx; background: var(--c-bg);
+  border: 1rpx solid var(--c-line); border-radius: 18rpx; min-height: var(--tap); padding: 0 24rpx;
+  box-sizing: border-box;
+}
+.searchbox__input { flex: 1; font-size: 28rpx; color: var(--c-text); }
+.searchbox__clear { display: flex; align-items: center; justify-content: center; width: 40rpx; height: 40rpx; min-width: 0; min-height: 0; }
+
+.pricecard { flex: 1; background: var(--c-bg); border-radius: 18rpx; padding: 18rpx 22rpx; }
+.pricecard__label { font-size: 22rpx; color: var(--c-muted); display: block; margin-bottom: 4rpx; }
+.pricecard__value { font-size: 30rpx; font-weight: 700; color: var(--c-text); }
+
+/* Quick price presets */
+.presets { display: flex; flex-wrap: wrap; gap: 14rpx; }
+.preset { border: 1rpx solid var(--c-line); border-radius: var(--radius-pill); padding: 12rpx 26rpx; font-size: 26rpx; color: var(--c-text); background: #fff; }
+.preset--active { background: var(--c-primary); border-color: var(--c-primary); color: #fff; }
+
+.stockrow {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--c-bg); border-radius: 20rpx; padding: 22rpx 24rpx;
+}
+.stockrow__title { font-size: 28rpx; font-weight: 600; color: var(--c-text); display: block; }
+.stockrow__sub { font-size: 22rpx; color: var(--c-muted); margin-top: 2rpx; display: block; }
+
+/* Sticky footer CTA */
+.sheet__footer { padding: 16rpx 28rpx calc(16rpx + env(safe-area-inset-bottom)); border-top: 1rpx solid var(--c-line); background: #fff; }

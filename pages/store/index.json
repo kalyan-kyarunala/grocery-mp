@@ -3,6 +3,7 @@
   "usingComponents": {
     "fa-icon": "/components/fa-icon/index",
     "product-card": "/components/product-card/index",
-    "ds-button": "/components/ds-button/index"
+    "ds-button": "/components/ds-button/index",
+    "range-slider": "/components/range-slider/index"
   }
 }

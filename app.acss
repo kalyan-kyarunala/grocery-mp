@@ -142,7 +142,7 @@ page {
 .filterbtn.tap { display: inline-flex; align-items: center; gap: 8rpx; vertical-align: middle; margin-right: 20rpx; padding: 14rpx 0; }
 .filterbtn__t { font-size: 24rpx; color: var(--c-primary); font-weight: 600; }
 .filterbtn__t--active { color: var(--c-accent); }
-.filter__label { font-size: 26rpx; font-weight: 700; color: var(--c-text); text-decoration: underline; text-underline-offset: 6rpx; }
+.filter__label { font-size: 26rpx; font-weight: 700; color: var(--c-text); }
 .resetbtn {
   font-size: 22rpx; font-weight: 700; color: var(--c-primary);
   background: var(--c-primary-50); border-radius: var(--radius-pill); padding: 10rpx 20rpx;

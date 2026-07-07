@@ -1,0 +1,8 @@
+.rs { width: 100%; padding: 24rpx 22rpx 8rpx; box-sizing: border-box; }
+.rs__track { position: relative; height: 6rpx; border-radius: 6rpx; background: var(--c-line); }
+.rs__fill { position: absolute; top: 0; bottom: 0; background: var(--c-primary); border-radius: 6rpx; }
+.rs__thumb {
+  position: absolute; top: 50%; width: 44rpx; height: 44rpx; margin-top: -22rpx; margin-left: -22rpx;
+  border-radius: 50%; background: #fff; border: 5rpx solid var(--c-primary);
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,.18);
+}
