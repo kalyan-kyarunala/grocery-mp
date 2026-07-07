@@ -28,8 +28,8 @@ Page({
     filterMaxDistanceText: '0.0',
     freeDeliveryOnly: false,
     filtersActive: false,
-    nameJustApplied: false,
-    distanceJustApplied: false
+    activeFilterCount: 0,
+    resultCount: 0
   },
   onLoad() {
     this._allOutlets = this.data.outlets;
@@ -43,6 +43,7 @@ Page({
       filterMaxDistance: bounds.max,
       filterMaxDistanceText: (bounds.max / 10).toFixed(1)
     });
+    this.applyOutletFilters();
   },
   onShow() {
     var cartCount = app.globalData.cart.reduce(function (s, i) { return s + i.qty; }, 0);
@@ -51,32 +52,22 @@ Page({
   setFilter(e) { this.setData({ activeFilter: e.target.dataset.f }); },
   openFilter() { this.setData({ showFilter: true }); },
   closeFilter() { this.setData({ showFilter: false }); },
-  closeOutletFilterDelayed() {
-    var self = this;
-    clearTimeout(this._closeFilterTimer);
-    this._closeFilterTimer = setTimeout(function () {
-      self.setData({ showFilter: false, nameJustApplied: false, distanceJustApplied: false });
-    }, 500);
+  onFilterNameInput(e) {
+    this.setData({ filterName: e.detail.value });
+    this.applyOutletFilters();
   },
-  onFilterNameInput(e) { this.setData({ filterName: e.detail.value }); },
+  clearName() {
+    this.setData({ filterName: '' });
+    this.applyOutletFilters();
+  },
   onMaxDistanceChange(e) {
     var v = e.detail.value;
     this.setData({ filterMaxDistance: v, filterMaxDistanceText: (v / 10).toFixed(1) });
-  },
-  toggleFreeDelivery() {
-    this.setData({ freeDeliveryOnly: !this.data.freeDeliveryOnly });
     this.applyOutletFilters();
-    this.closeOutletFilterDelayed();
   },
-  applyNameFilter() {
+  onFreeDeliverySwitchChange(e) {
+    this.setData({ freeDeliveryOnly: e.detail.value });
     this.applyOutletFilters();
-    this.setData({ nameJustApplied: true });
-    this.closeOutletFilterDelayed();
-  },
-  applyDistanceFilter() {
-    this.applyOutletFilters();
-    this.setData({ distanceJustApplied: true });
-    this.closeOutletFilterDelayed();
   },
   resetOutletFilters() {
     var bounds = this._distanceBounds;
@@ -87,14 +78,14 @@ Page({
       freeDeliveryOnly: false
     });
     this.applyOutletFilters();
-    this.closeOutletFilterDelayed();
   },
   applyOutletFilters() {
     var name = (this.data.filterName || '').trim().toLowerCase();
     var max = this.data.filterMaxDistance;
     var freeOnly = this.data.freeDeliveryOnly;
     var bounds = this._distanceBounds;
-    var filtersActive = !!name || max < bounds.max || freeOnly;
+    var activeFilterCount = (name ? 1 : 0) + (max < bounds.max ? 1 : 0) + (freeOnly ? 1 : 0);
+    var filtersActive = activeFilterCount > 0;
     var filtered = (this._allOutlets || []).filter(function (o) {
       if (name && o.name.toLowerCase().indexOf(name) === -1) { return false; }
       var d10 = Math.round(parseFloat(o.distance) * 10);
@@ -102,7 +93,12 @@ Page({
       if (freeOnly && !o.freeDelivery) { return false; }
       return true;
     });
-    this.setData({ outlets: filtered, filtersActive: filtersActive });
+    this.setData({
+      outlets: filtered,
+      filtersActive: filtersActive,
+      activeFilterCount: activeFilterCount,
+      resultCount: filtered.length
+    });
   },
   openPromo(promo) { my.showToast({ content: 'Promo ' + promo.code + ' applied', type: 'success' }); },
   openStore(outlet) { my.navigateTo({ url: '/pages/store/index?id=' + outlet.id }); },

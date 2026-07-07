@@ -24,9 +24,5 @@
 
 .seeall { padding: 8rpx 0 8rpx 16rpx; margin-right: -16rpx; }
 
-/* Filter sheet — black border look, matching the store page's filter sheet. */
-.sheet__body .field { border-color: #000; }
-.filter-apply .ds-btn--secondary { border-color: #000; }
-
 /* Clears the fixed tab-bar so the last outlet card isn't hidden behind it. */
 .screen { padding-bottom: calc(150rpx + env(safe-area-inset-bottom)); }

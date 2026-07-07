@@ -143,33 +143,43 @@ page {
 .filterbtn__t { font-size: 24rpx; color: var(--c-primary); font-weight: 600; }
 .filterbtn__t--active { color: var(--c-accent); }
 .filter__label { font-size: 26rpx; font-weight: 700; color: var(--c-text); }
+.filter__head { margin-top: 0; }
 .resetbtn {
   font-size: 22rpx; font-weight: 700; color: var(--c-primary);
   background: var(--c-primary-50); border-radius: var(--radius-pill); padding: 10rpx 20rpx;
 }
-.radio {
-  width: 40rpx; height: 40rpx; border-radius: 50%; border: 1rpx solid var(--c-line); background: #fff; flex: none;
-  display: flex; align-items: center; justify-content: center;
-}
-.radio--on { border-color: var(--c-accent); background: var(--c-accent); }
 .filter-empty { display: flex; flex-direction: column; align-items: center; padding: 100rpx 40rpx; text-align: center; }
-/* The block="{{true}}" prop only makes the *inner* .ds-btn stretch; the
-   <ds-button> custom element's own outer node still needs width:100% or it
-   shrinks to fit its content instead of the sheet's full width. */
-.filter-apply ds-button { display: block; width: 100%; box-sizing: border-box; }
-/* Immediate green feedback while hovering/pressing a Filter apply button —
-   instant, but reverts as soon as the pointer leaves or lifts. */
-.filter-apply .ds-btn--secondary:hover,
-.filter-apply .ds-btn--secondary:active {
-  background: var(--c-accent-700); color: #fff; border-color: var(--c-accent-700);
+
+/* Drag handle, active-filter count badge, circular close button, icon
+   search box, value cards, availability row, sticky single-CTA footer. */
+.sheet__grab { width: 72rpx; height: 8rpx; border-radius: 8rpx; background: var(--c-line); margin: 16rpx auto 4rpx; }
+.filter-badge {
+  font-size: 22rpx; font-weight: 600; color: var(--c-primary); background: var(--c-primary-50);
+  padding: 4rpx 16rpx; border-radius: var(--radius-pill);
 }
-/* Dark green "applied" feedback, driven by data state (not :active) so it
-   stays visible for the full closeFilterDelayed() pause, not just while the
-   finger is on the screen. */
-.filter-apply--done .ds-btn--secondary {
-  background: var(--c-accent-700); color: #fff; border-color: var(--c-accent-700);
-  transition: background .15s ease, color .15s ease;
+.closebtn {
+  width: 60rpx; height: 60rpx; min-width: 0; min-height: 0; border-radius: 50%; background: var(--c-bg);
 }
+.searchbox {
+  display: flex; align-items: center; gap: 16rpx; background: var(--c-bg);
+  border: 1rpx solid var(--c-line); border-radius: 18rpx; min-height: var(--tap); padding: 0 24rpx;
+  box-sizing: border-box;
+}
+.searchbox__input { flex: 1; font-size: 28rpx; color: var(--c-text); }
+.searchbox__clear { display: flex; align-items: center; justify-content: center; width: 40rpx; height: 40rpx; min-width: 0; min-height: 0; }
+
+.pricecard { flex: 1; background: var(--c-bg); border-radius: 18rpx; padding: 18rpx 22rpx; }
+.pricecard__label { font-size: 22rpx; color: var(--c-muted); display: block; margin-bottom: 4rpx; }
+.pricecard__value { font-size: 30rpx; font-weight: 700; color: var(--c-text); }
+
+.stockrow {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--c-bg); border-radius: 20rpx; padding: 22rpx 24rpx;
+}
+.stockrow__title { font-size: 28rpx; font-weight: 600; color: var(--c-text); display: block; }
+.stockrow__sub { font-size: 22rpx; color: var(--c-muted); margin-top: 2rpx; display: block; }
+
+.sheet__footer { padding: 16rpx 28rpx calc(16rpx + env(safe-area-inset-bottom)); border-top: 1rpx solid var(--c-line); background: #fff; }
 
 /* ---- Address type badge (cart, manage-address) ---- */
 .addr-type-badge { background: var(--c-primary-50); border-radius: 10rpx; padding: 6rpx 14rpx; }
